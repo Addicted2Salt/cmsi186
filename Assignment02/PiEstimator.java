@@ -9,23 +9,26 @@ public class PiEstimator {
             System.out.println( "\n  No argument inputted, running with 10,000 values by default!\n" );
             System.out.println(estimate(darts));
                 // use 10000 default for total darts
+
         } else {
             try {
             darts = Integer.parseInt( args[0] );
-            System.out.println(estimate(darts));
+            if (darts <= 1) {
+                System.out.println( "Enter an integer larger than 1");
+            } else {
+                System.out.println(estimate(darts));
+            }
             //
             // TODO: Parse the command line argument 
             //
-        } catch (NumberFormatException nfe) {
-            System.out.println( "   Sorry, bad input: must be an integer number!  Please try again..." );
+        } catch (IllegalArgumentException iae) {
+            System.out.println( "Sorry, bad input: must be an integer number! Please try again...");
             System.exit( -1 );
-            //
-            // TODO: Take care of a possible non-integer argument.
-            //
         } catch (ArrayIndexOutOfBoundsException aiobe) {
             System.out.println( "   Sorry, bad input: must be an integer number! Please try again..." );
             System.exit( -1 );
         } 
+
         //
         // TODO: Call estimate() to run and print results.
        //
