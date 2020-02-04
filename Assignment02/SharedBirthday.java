@@ -21,21 +21,22 @@ public class SharedBirthday {
             System.err.println(e.getMessage());
         }
     }
-
+    //
     public static double probabilityEstimate(int people, int days, int trials) {
         int numDays[];
-        numDays = new int[364]; 
+        numDays = new int[days]; 
         double sharedBdayCount = 0;
         double daysOver1Bday = 0;
-        for ( int i = 1; i < trials+1; i++ ) {
-            for (int x = 0; x < days-1; x++) {
-                numDays[x] = 0;
+        for ( int i = 1; i <= trials; i++ ) {
                 sharedBdayCount = 0;
+            for (int x = 0; x < numDays.length; x++) {
+                numDays[x] = 0;
             }
-          for (int p = 1; p < people+1; p++ ) {
-            int birthday = (int)(Math.random() * (364));
+          for (int p = 1; p <= people; p++ ) {
+            int birthday = (int)(Math.random() * (days));
             numDays[birthday]++;
-        } for (int d = 0; d < days-1; d++) {
+        } 
+        for (int d = 0; d < days; d++) {
             if (numDays[d] > 1) {
                 sharedBdayCount++;
             }
@@ -51,9 +52,9 @@ public class SharedBirthday {
         // implement the whole method on your own.
         //
 
-        return (daysOver1Bday/trials)*100;
+        return (daysOver1Bday/trials);
     }
     //
     // TODO: Don't be afraid to write private helper methods to keep your code modular.
-    //
 }
+
