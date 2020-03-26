@@ -192,6 +192,7 @@ public class PlaygroundSoccerSim {
       }
       report();
       collisionCheck();
+      atLeastOneBallStillMoving();
     // for each ball
     //  - if the ball is not out of bounds and not at rest, move the ball
     //  - if the ball is out of bounds after the move or at rest, set the ball out of bounds or at rest
@@ -239,6 +240,7 @@ public class PlaygroundSoccerSim {
       for (int i = 0; i<soccerBalls.length; i++) {
         if (soccerBalls[i].isStillMoving() == false) {
           continueSim = false;
+          System.out.println("No balls moving");
           return continueSim;
         } else {
         continueSim = true;
