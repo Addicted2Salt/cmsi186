@@ -509,8 +509,64 @@ public class SkateRampArea {
         double midpoint = 0.0;
         double rectLength = 0.0;
 
-        System.out.println("NOW RUNNING 10 TESTS PER METHOD \n \n");
-        System.out.println("TESTING GET MIDPOINT \n \n");
+        double aub1 = 0.99;
+        double aub2 = -0.01;
+        double aub3 = 0.45;
+        double aub4 = -0.2;
+        double aub5 = 0.99;
+        double aub6 = 0.89;
+        double aub7 = 0.765;
+        double aub8 = 0.54;
+        double aub9 = 0.873;
+        double aub10 = 0.234;
+        double alb1 = 0.45;
+        double alb2 = -0.45;
+        double alb3 = -0.987;
+        double alb4 = -0.7632;
+        double alb5 = -0.6542;
+        double alb6 = 0.4235;
+        double alb7 = 0.4655;
+        double alb8 = 0.4445;
+        double alb9 = -0.545;
+        double alb10 = -0.25;
+        double[] aupperBounds = {aub1, aub2, aub3, aub4, aub5, aub6, aub7, aub8, aub9, aub10};
+        double[] alowerBounds = {alb1, alb2, alb3, alb4, alb5, alb6, alb7, alb8, alb9, alb10};
+        double[] co1 = {10, 2, -3};
+        double[] co2 = {-4, -7, -3, -54};
+        double[] co3 = {6, 12, -34, -4};
+        double[] co4 = {0, -2, -13, 5, 6};
+        double[] co5 = {13, 12, -3, 0, 9};
+        double[] co6 = {10, 21, -23, 1};
+        double[] co7 = {10, 20, -3};
+        double[] co8 = {-400, 2, -30};
+        double[] co9 = {2, -3};
+        double[] co10 = {11, -232, -3};
+        double ub1   = 2.0;
+        double ub2   = -12.0;
+        double ub3   = -232.0;
+        double ub4   = 32.0;
+        double ub5   = 62.0;
+        double ub6   = 342.0;
+        double ub7   = 82.0;
+        double ub8   = 122.0;
+        double ub9   = -432.0;
+        double ub10   = 2.2345;
+        double lb1  = -3.2;
+        double lb2  = -153.2;
+        double lb3  = -63.2;
+        double lb4  = 3.2;
+        double lb5  = 53.2;
+        double lb6  = 53.2;
+        double lb7  = 55.2;
+        double lb8  = 53.2;
+        double lb9  = -553.2;
+        double lb10  = -1.2;
+        double[]    upperBounds = {ub1, ub2, ub3, ub4, ub5, ub6, ub7, ub8, ub9, ub10};
+        double[]    lowerBounds = {lb1, lb2, lb3, lb4, lb5, lb6, lb7, lb8, lb9, lb10};
+        double[][] polyArray = {co1, co2, co3, co4, co5, co6, co7, co8, co9, co10};
+
+        System.out.println("**********NOW RUNNING 10 TESTS PER METHOD********** \n \n");
+        System.out.println("*****TESTING GET MIDPOINT***** \n \n");
         midpoint = getMidpoint(5, 26, 1);
         System.out.println("<Lower Bound: 5> <Length: 26> \n<Midpoint: " + midpoint + ">");
         midpoint = getMidpoint(-5, 3, 1);
@@ -532,7 +588,7 @@ public class SkateRampArea {
         midpoint = getMidpoint(2, 0.47, 1);
         System.out.println("<Lower Bound: 2> <Length: 0.47> \n<Midpoint: " + midpoint + ">");
 
-        System.out.println("\n \nTESTING GET LENGTH \n \n");
+        System.out.println("\n \n*****TESTING GET LENGTH***** \n \n");
         rectLength = getLength(-9.4, 14, 16);
         System.out.println("<Lower bound: -9.4> <Length: 14> <Num of Rectangles: 16> \n<Length: " + df.format(rectLength) + ">");
         rectLength = getLength(-0.01, 3.2, 8);
@@ -554,7 +610,7 @@ public class SkateRampArea {
         rectLength = getLength(7.4, 16.456, 94);
         System.out.println("<Lower bound: 7.4> <Length: 16.456> <Num of Rectangles: 94> \n<Length: " + df.format(rectLength) + ">");
 
-        System.out.println("\n \nTESTING UPDATE PERCENT CHANGE \n \n");
+        System.out.println("\n \n*****TESTING UPDATE PERCENT CHANGE***** \n \n");
         updatePercentChange(100, 97);
         System.out.println("<Current Area: 100> <Previous Area: 97> \n<PercentChange: " + prcntChangeString + "%");
         updatePercentChange(47, 8);
@@ -576,40 +632,8 @@ public class SkateRampArea {
         updatePercentChange(43654, 35441);
         System.out.println("<Current Area: 43654> <Previous Area: 35441> \n<PercentChange: " + prcntChangeString + "%");
 
-        System.out.println("\n \nTESTING CALCULATE POLYNOMIAL AREA \n \n");
-        double[] co1 = {10, 2, -3};
-        double[] co2 = {-4, -7, -3, -54};
-        double[] co3 = {6, 12, -34, -4};
-        double[] co4 = {0, -2, -13, 5, 6};
-        double[] co5 = {13, 12, -3, 0, 9};
-        double[] co6 = {10, 21, -23, 1};
-        double[] co7 = {10, 20, -3};
-        double[] co8 = {-400, 2, -30};
-        double[] co9 = {2, -3};
-        double[] co10 = {11, -232, -3};
-        double ub1   = 2.0;
-        double ub2   = -12.0;
-        double ub3   = -232.0;
-        double ub4   = 32.0;
-        double ub5   = 62.0;
-        double ub6   = 342.0;
-        double ub7   = 982.0;
-        double ub8   = 12432.0;
-        double ub9   = -432.0;
-        double ub10   = 2.2345;
-        double lb1  = -3.2;
-        double lb2  = -153.2;
-        double lb3  = -6553.2;
-        double lb4  = 3.2;
-        double lb5  = 53.2;
-        double lb6  = 53.2;
-        double lb7  = 553.2;
-        double lb8  = 6553.2;
-        double lb9  = -553.2;
-        double lb10  = -1.2;
-        double[]    upperBounds = {ub1, ub2, ub3, ub4, ub5, ub6, ub7, ub8, ub9, ub10};
-        double[]    lowerBounds = {lb1, lb2, lb3, lb4, lb5, lb6, lb7, lb8, lb9, lb10};
-        double[][] polyArray = {co1, co2, co3, co4, co5, co6, co7, co8, co9, co10};
+        System.out.println("\n \n*****TESTING CALCULATE POLYNOMIAL AREA***** \n \n");
+
         for ( int j = 0; j < polyArray.length; j++){
             coeffs = polyArray[j];
             upperBound = upperBounds[j];
@@ -625,7 +649,7 @@ public class SkateRampArea {
             System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
         }   
 
-        System.out.println("\n \nTESTING CALCULATE SINE AREA \n \n");
+        System.out.println("\n \n*****TESTING CALCULATE SINE AREA***** \n \n");
         System.out.println("Using bounds from poly function.\n");
         for (int j = 0; j < 10; j++ ) {
             upperBound = upperBounds[j];
@@ -640,7 +664,7 @@ public class SkateRampArea {
             System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
         }
 
-        System.out.println("\n \nTESTING CALCULATE COSINE AREA \n \n");
+        System.out.println("\n \n*****TESTING CALCULATE COSINE AREA***** \n \n");
         System.out.println("Using bounds from poly function.\n");
         for (int j = 0; j < 10; j++ ) {
             upperBound = upperBounds[j];
@@ -650,6 +674,102 @@ public class SkateRampArea {
             int i = 0;
             while (prcntChange > epsilon) {
                 calculateAreaCos(lowerBound, upperBound, i);
+                i += 1;
+            }
+            System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
+        }
+
+        System.out.println("\n \n*****TESTING CALCULATE INVERSE SINE AREA***** \n \n");
+        
+        for (int j = 0; j < 10; j++ ) {
+            upperBound = aupperBounds[j];
+            lowerBound = alowerBounds[j];
+            prcntChange = 100.0;
+            System.out.println("<Lower Bound: " + alowerBounds[j] + "> Upper Bound: " + aupperBounds[j] + ">"); 
+            int i = 0;
+            while (prcntChange > epsilon) {
+                calculateAreaArcsin(lowerBound, upperBound, i);
+                i += 1;
+            }
+            System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
+        }
+
+        System.out.println("\n \n*****TESTING CALCULATE INVERSE COSINE AREA***** \n \n");
+
+        for (int j = 0; j < 10; j++ ) {
+            upperBound = aupperBounds[j];
+            lowerBound = alowerBounds[j];
+            prcntChange = 100.0;
+            System.out.println("<Lower Bound: " + alowerBounds[j] + "> Upper Bound: " + aupperBounds[j] + ">"); 
+            int i = 0;
+            while (prcntChange > epsilon) {
+                calculateAreaArccos(lowerBound, upperBound, i);
+                i += 1;
+            }
+            System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
+        }
+
+        System.out.println("\n \n*****TESTING CALCULATE INVERSE TANGENT AREA***** \n \n");
+
+        System.out.println("Using bounds from poly function.\n");
+        for (int j = 0; j < 10; j++ ) {
+            upperBound = upperBounds[j];
+            lowerBound = lowerBounds[j];
+            prcntChange = 100.0;
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            int i = 0;
+            while (prcntChange > epsilon) {
+                calculateAreaArctan(lowerBound, upperBound, i);
+                i += 1;
+            }
+            System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
+        }
+
+        System.out.println("\n \n*****TESTING CALCULATE HYPERBOLIC SINE AREA***** \n \n");
+
+        System.out.println("Using bounds from poly function.\n");
+        for (int j = 0; j < 10; j++ ) {
+            upperBound = upperBounds[j];
+            lowerBound = lowerBounds[j];
+            prcntChange = 100.0;
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            int i = 0;
+            while (prcntChange > epsilon) {
+                calculateAreaSinh(lowerBound, upperBound, i);
+                i += 1;
+            }
+            System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
+        }
+
+        
+        System.out.println("\n \n*****TESTING CALCULATE HYPERBOLIC COSINE AREA***** \n \n");
+
+        System.out.println("Using bounds from poly function.\n");
+        for (int j = 0; j < 10; j++ ) {
+            upperBound = upperBounds[j];
+            lowerBound = lowerBounds[j];
+            prcntChange = 100.0;
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            int i = 0;
+            while (prcntChange > epsilon) {
+                calculateAreaCosh(lowerBound, upperBound, i);
+                i += 1;
+            }
+            System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
+        }
+
+        
+        System.out.println("\n \n*****TESTING CALCULATE HYPERBOLIC TANGENT AREA***** \n \n");
+
+        System.out.println("Using bounds from poly function.\n");
+        for (int j = 0; j < 10; j++ ) {
+            upperBound = upperBounds[j];
+            lowerBound = lowerBounds[j];
+            prcntChange = 100.0;
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            int i = 0;
+            while (prcntChange > epsilon) {
+                calculateAreaTanh(lowerBound, upperBound, i);
                 i += 1;
             }
             System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
