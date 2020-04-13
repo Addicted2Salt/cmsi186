@@ -60,7 +60,19 @@ public class SkateRampArea {
             if (args.length < 3) {
                 throw new IllegalArgumentException("not enough arguments for an arccos function.");
             } 
-        } else if (
+        } else if (function.matches("sinh")) {
+            if (args.length < 3) {
+                throw new IllegalArgumentException("not enough arguments for an hyperbolic sin function.");
+            } 
+        } else if (function.matches("cosh")) {
+            if (args.length < 3) {
+                throw new IllegalArgumentException("not enough arguments for an hyperbolic cos function.");
+            } 
+        } else if (function.matches("tanh")) {
+            if (args.length < 3) {
+                throw new IllegalArgumentException("not enough arguments for an hyperbolic tan function.");
+            } 
+        }else if (
             !function.matches("poly")   || 
             !function.matches("sin")    || 
             !function.matches("cos")    ||
@@ -94,7 +106,19 @@ public class SkateRampArea {
                 if (args.length < 4 ) {
                     throw new IllegalArgumentException("Not enough arguments for an arccos function.");
                 }
-            }   else {
+            } else if (function.matches("cosh")) {
+                if (args.length < 4 ) {
+                    throw new IllegalArgumentException("Not enough arguments for an hyperbolic cos function.");
+                }
+            } else if (function.matches("sinh")) {
+                if (args.length < 4 ) {
+                    throw new IllegalArgumentException("Not enough arguments for an hyperbolic sin function.");
+                }
+            } else if (function.matches("tanh")) {
+                if (args.length < 4 ) {
+                    throw new IllegalArgumentException("Not enough arguments for an hyperbolic tan function.");
+                }
+            } else {
                 throw new IllegalArgumentException("Please check your arguments again.");
             }
 
@@ -353,6 +377,93 @@ public class SkateRampArea {
         return totalArea;
     }
 
+    public double calculateAreaTanh ( double lb, double ub, int n ) {
+        int i = 0;
+        double midpoint = 0.0;
+        double totalArea = 0.0;
+        double yCoord = 0.0;
+        double rectLength = 0.0;
+        numRect = n;
+
+        rectLength = getLength(lb, ub, n);
+        for ( i = 1; i <= numRect; i++) {
+            midpoint = getMidpoint(lb, rectLength, i);
+            yCoord = 0.0;
+            yCoord = (Math.tanh(midpoint));
+            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
+            totalArea += yCoord * rectLength;
+        }
+
+        if (n == 1) {
+            currentArea = totalArea;
+            previousArea = totalArea;
+        } else if (n > 1) {
+            currentArea = totalArea;
+            updatePercentChange(currentArea, previousArea);
+            previousArea = currentArea;
+        }
+        
+        return totalArea;
+    }
+
+    public double calculateAreaCosh ( double lb, double ub, int n ) {
+        int i = 0;
+        double midpoint = 0.0;
+        double totalArea = 0.0;
+        double yCoord = 0.0;
+        double rectLength = 0.0;
+        numRect = n;
+
+        rectLength = getLength(lb, ub, n);
+        for ( i = 1; i <= numRect; i++) {
+            midpoint = getMidpoint(lb, rectLength, i);
+            yCoord = 0.0;
+            yCoord = (Math.cosh(midpoint));
+            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
+            totalArea += yCoord * rectLength;
+        }
+
+        if (n == 1) {
+            currentArea = totalArea;
+            previousArea = totalArea;
+        } else if (n > 1) {
+            currentArea = totalArea;
+            updatePercentChange(currentArea, previousArea);
+            previousArea = currentArea;
+        }
+        
+        return totalArea;
+    }
+
+    public double calculateAreaSinh ( double lb, double ub, int n ) {
+        int i = 0;
+        double midpoint = 0.0;
+        double totalArea = 0.0;
+        double yCoord = 0.0;
+        double rectLength = 0.0;
+        numRect = n;
+
+        rectLength = getLength(lb, ub, n);
+        for ( i = 1; i <= numRect; i++) {
+            midpoint = getMidpoint(lb, rectLength, i);
+            yCoord = 0.0;
+            yCoord = (Math.sinh(midpoint));
+            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
+            totalArea += yCoord * rectLength;
+        }
+
+        if (n == 1) {
+            currentArea = totalArea;
+            previousArea = totalArea;
+        } else if (n > 1) {
+            currentArea = totalArea;
+            updatePercentChange(currentArea, previousArea);
+            previousArea = currentArea;
+        }
+        
+        return totalArea;
+    }
+
     public double updatePercentChange (double cArea, double pArea) {
         prcntChange = Math.abs(1 - (cArea / pArea));
         return prcntChange;
@@ -373,6 +484,19 @@ public class SkateRampArea {
     }
 
     public static void main( String[] args ) {
+        System.out.println( "\n   Welcome to my SkateRampArea program!" );
+        System.out.println( "\n   This program allows you to estimate the area of the following functions: \n");
+        System.out.println( "     <poly:    <coefficients, lower bound, upper bound, optional %> >");
+        System.out.println( "     <sin:     <lower bound, upper bound, optional %> >");
+        System.out.println( "     <cos:     <lower bound, upper bound, optional %> >");
+        System.out.println( "     <tan:     <lower bound, upper bound, optional %> >");
+        System.out.println( "     <asin:    <lower bound [>= -1], upper bound [<= 1], optional %> >");
+        System.out.println( "     <acos:    <lower bound [>= -1], upper bound [<= 1], optional %> >");
+        System.out.println( "     <atan:    <lower bound, upper bound, optional %> >");
+        System.out.println( "     <sinh:    <lower bound, upper bound, optional %> >");
+        System.out.println( "     <cosh:    <lower bound, upper bound, optional %> >");
+        System.out.println( "     <sinh:    <lower bound, upper bound, optional %> >");
+
         
         //change name before turn in
         SkateRampArea sk8erBoi = new SkateRampArea();
@@ -389,49 +513,81 @@ public class SkateRampArea {
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
                 System.out.println(sk8erBoi.calculateAreaPoly(sk8erBoi.lowerBound, sk8erBoi.upperBound, sk8erBoi.coeffs, i));
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange);
+                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
             }
-            System.out.println(sk8erBoi.numRect + " rectangles were used.");
+            sk8erBoi.lastArea = sk8erBoi.currentArea;
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
         } else if (sk8erBoi.function.matches("sin")) {
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
                 System.out.println(sk8erBoi.calculateAreaSin(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange);
+                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
             }
-            System.out.println(sk8erBoi.numRect + " rectangles were used.");
+            sk8erBoi.lastArea = sk8erBoi.currentArea;
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
         } else if (sk8erBoi.function.matches("cos")) {
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
                 System.out.println(sk8erBoi.calculateAreaCos(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange);
+                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
             }
-            System.out.println(sk8erBoi.numRect + " rectangles were used.");
+            sk8erBoi.lastArea = sk8erBoi.currentArea;
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
         } else if (sk8erBoi.function.matches("atan")) {
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
                 System.out.println(sk8erBoi.calculateAreaArctan(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange);
+                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
             }
-            System.out.println(sk8erBoi.numRect + " rectangles were used.");
+            sk8erBoi.lastArea = sk8erBoi.currentArea;
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
         } else if (sk8erBoi.function.matches("asin")) {
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
                 System.out.println(sk8erBoi.calculateAreaArcsin(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange);
+                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
             }
-            System.out.println(sk8erBoi.numRect + " rectangles were used.");
+            sk8erBoi.lastArea = sk8erBoi.currentArea;
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
         } else if (sk8erBoi.function.matches("acos")) {
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
                 System.out.println(sk8erBoi.calculateAreaArccos(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange);
+                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
             }
-            System.out.println(sk8erBoi.numRect + " rectangles were used.");
-        }
+            sk8erBoi.lastArea = sk8erBoi.currentArea;
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
+        } else if (sk8erBoi.function.matches("cosh")) {
+            int i = 1;
+            while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
+                System.out.println(sk8erBoi.calculateAreaCosh(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                i += 1;
+                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+            }
+            sk8erBoi.lastArea = sk8erBoi.currentArea;
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
+        } else if (sk8erBoi.function.matches("sinh")) {
+            int i = 1;
+            while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
+                System.out.println(sk8erBoi.calculateAreaSinh(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                i += 1;
+                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+            }
+            sk8erBoi.lastArea = sk8erBoi.currentArea;
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
+        } else if (sk8erBoi.function.matches("tanh")) {
+            int i = 1;
+            while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
+                System.out.println(sk8erBoi.calculateAreaTanh(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                i += 1;
+                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+            }
+            sk8erBoi.lastArea = sk8erBoi.currentArea;
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");        }
     }
 }
