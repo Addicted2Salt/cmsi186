@@ -155,14 +155,14 @@ public class SkateRampArea {
             totalArea += yCoord * rectLength;
         }
 
-        // if (n == 1) {
-        //     currentArea = totalArea;
-        //     previousArea = totalArea;
-        // } else if (n > 1) {
-        //     currentArea = totalArea;
-        //     previousArea = calculateAreaPoly(lb, ub, coeffs, n-1);
-        //     prcntChange = 1 - ( currentArea / previousArea );
-        // }
+        if (n == 1) {
+            currentArea = totalArea;
+            previousArea = totalArea;
+        } else if (n > 1) {
+            currentArea = totalArea;
+            updatePercentChange(currentArea, previousArea);
+            previousArea = currentArea;
+        }
         // System.out.println("C: " + currentArea);
         // System.out.println("P: " + previousArea);
         // System.out.println(n);
@@ -190,6 +190,11 @@ public class SkateRampArea {
         return totalArea;
     }
 
+    public double updatePercentChange (double cArea, double pArea) {
+        prcntChange = 1 - (cArea / pArea);
+        return prcntChange;
+    }
+
     public String coeffsToString () {
         String coeffString = Arrays.toString(coeffs);
         return coeffString;
@@ -204,7 +209,6 @@ public class SkateRampArea {
         return midpoint;
     }
 
-
     public static void main( String[] args ) {
         
         //change name before turn in
@@ -216,15 +220,26 @@ public class SkateRampArea {
             System.out.println("Error with arguments or setup.");
             System.exit(-1);
         }
-        System.out.println(sk8erBoi.calculateAreaPoly(sk8erBoi.lowerBound, sk8erBoi.upperBound, sk8erBoi.coeffs, 10));
-        // if (sk8erBoi.function.matches("poly")) {
-        //     int i = 1;
-        //     while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
-        //         System.out.println(sk8erBoi.calculateAreaPoly(sk8erBoi.lowerBound, sk8erBoi.upperBound, sk8erBoi.coeffs, i));
-        //         i += 1;
-        //         System.out.println(sk8erBoi.function + " " + " " +sk8erBoi.prcntChange);
-        //     }
-        //     System.out.println(sk8erBoi.numRect + " rectangles were used.");
-        // }
+
+        
+        double t1 = (sk8erBoi.calculateAreaPoly(sk8erBoi.lowerBound, sk8erBoi.upperBound, sk8erBoi.coeffs, 1));
+        double t2 = (sk8erBoi.calculateAreaPoly(sk8erBoi.lowerBound, sk8erBoi.upperBound, sk8erBoi.coeffs, 2));
+        double t3 = (sk8erBoi.calculateAreaPoly(sk8erBoi.lowerBound, sk8erBoi.upperBound, sk8erBoi.coeffs, 3));
+        double t4 = (sk8erBoi.calculateAreaPoly(sk8erBoi.lowerBound, sk8erBoi.upperBound, sk8erBoi.coeffs, 4));
+        double t5 = (sk8erBoi.calculateAreaPoly(sk8erBoi.lowerBound, sk8erBoi.upperBound, sk8erBoi.coeffs, 5));
+        System.out.println(t1 + " " + t2 + " " + t3 + " " + t4 + " " + t5);
+        System.out.println(1 - (t2/t1));
+        System.out.println(1 - (t3/t2));
+        System.out.println(1 - (t4/t3));
+        System.out.println(1 - (t5/t4));
+        if (sk8erBoi.function.matches("poly")) {
+            int i = 1;
+            while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
+                System.out.println(sk8erBoi.calculateAreaPoly(sk8erBoi.lowerBound, sk8erBoi.upperBound, sk8erBoi.coeffs, i));
+                i += 1;
+                System.out.println(sk8erBoi.function + " " + " " +sk8erBoi.prcntChange);
+            }
+            System.out.println(sk8erBoi.numRect + " rectangles were used.");
+        }
     }
 }
