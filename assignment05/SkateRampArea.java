@@ -32,7 +32,7 @@ public class SkateRampArea {
         double ub = 0.0;
         double lb = 0.0;
         int i = 0;
-        String[] functions = { "poly", "sin", "cos" };
+        String[] functions = { "poly", "sin", "cos", "arctan", "asin" };
 
 
         //checks if there are enough arguments to meet the minimum, throw an exception if not
@@ -46,9 +46,22 @@ public class SkateRampArea {
             }
         } else if (function.matches("sin") || function.matches("cos")) {
             if (args.length < 3) {
-                throw new IllegalArgumentException("Not enough arguments for a sin function.");
+                throw new IllegalArgumentException("Not enough arguments for a sin or cos function.");
             }
-        } else if (!function.matches("poly") || !function.matches("sin") || !function.matches("cos")) {
+        } else if (function.matches("atan")) {
+            if (args.length < 3) {
+                throw new IllegalArgumentException("Not enough arguments for an arctan function.");
+            }
+        } else if (function.matches("asin")) {
+            if (args.length < 3) {
+                throw new IllegalArgumentException("Not enough arguments for an arctan function.");
+            }
+        } else if (
+            !function.matches("poly")   || 
+            !function.matches("sin")    || 
+            !function.matches("cos")    ||
+            !function.matches("atan")   ||
+            !function.matches("asin")) {
             throw new IllegalArgumentException("Unexpected function name.");
         }
 
@@ -59,9 +72,19 @@ public class SkateRampArea {
                 }
             } else if (function.matches("sin") || function.matches("cos")) {
                 if (args.length < 4) {
-                    throw new IllegalArgumentException("Not enough arguments for a sin function.");
+                    throw new IllegalArgumentException("Not enough arguments for a sin pr cps function.");
                 }
-            } 
+            } else if (function.matches("atan")) {
+                if (args.length < 4) {
+                    throw new IllegalArgumentException("Not enough arguments for an arctan function.");
+                }
+            } else if (function.matches("asin")) {
+                if (args.length < 4) {
+                    throw new IllegalArgumentException("Not enough arguments for an arcsin function.");
+                }
+            } else {
+                throw new IllegalArgumentException("Please check your arguments again.");
+            }
 
             try {
                 epsilon = (Double.parseDouble( args[args.length - 1].substring( 0, args[args.length - 1].length() - 1))) / 100.0;
@@ -108,6 +131,10 @@ public class SkateRampArea {
                 lowerBound = lb;
             }
         }
+        //check bounds for arcsin
+        if ((upperBound >= 1 || lowerBound <= -1) && function.matches("asin")) {
+            throw new IllegalArgumentException("Arcsin can only take argumnts between -1 and 1.");
+        }
 
         if (function.matches("poly") && epsilon != DEFAULT_PERCENT) {
             numCoeff = (int)((args.length - 3) - (1));
@@ -129,8 +156,8 @@ public class SkateRampArea {
             } catch (Exception e) {
                 System.out.println("Exception in finding coefficients.");
             }
-        }
     }
+}
 
     public double calculateAreaPoly ( double lb, double ub, double[] coefficients, int n ) {
         int i = 0;
@@ -227,6 +254,64 @@ public class SkateRampArea {
         return totalArea;
     }
 
+    public double calculateAreaArctan ( double lb, double ub, int n ) {
+        int i = 0;
+        double midpoint = 0.0;
+        double totalArea = 0.0;
+        double yCoord = 0.0;
+        double rectLength = 0.0;
+        numRect = n;
+
+        rectLength = getLength(lb, ub, n);
+        for ( i = 1; i <= numRect; i++) {
+            midpoint = getMidpoint(lb, rectLength, i);
+            yCoord = 0.0;
+            yCoord = (Math.atan(midpoint));
+            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
+            totalArea += yCoord * rectLength;
+        }
+
+        if (n == 1) {
+            currentArea = totalArea;
+            previousArea = totalArea;
+        } else if (n > 1) {
+            currentArea = totalArea;
+            updatePercentChange(currentArea, previousArea);
+            previousArea = currentArea;
+        }
+        
+        return totalArea;
+    }
+
+    public double calculateAreaArcsin ( double lb, double ub, int n ) {
+        int i = 0;
+        double midpoint = 0.0;
+        double totalArea = 0.0;
+        double yCoord = 0.0;
+        double rectLength = 0.0;
+        numRect = n;
+
+        rectLength = getLength(lb, ub, n);
+        for ( i = 1; i <= numRect; i++) {
+            midpoint = getMidpoint(lb, rectLength, i);
+            yCoord = 0.0;
+            yCoord = (Math.asin(midpoint));
+            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
+            totalArea += yCoord * rectLength;
+        }
+
+        if (n == 1) {
+            currentArea = totalArea;
+            previousArea = totalArea;
+        } else if (n > 1) {
+            currentArea = totalArea;
+            updatePercentChange(currentArea, previousArea);
+            previousArea = currentArea;
+        }
+        
+        return totalArea;
+    }
+
     public double updatePercentChange (double cArea, double pArea) {
         prcntChange = Math.abs(1 - (cArea / pArea));
         return prcntChange;
@@ -278,6 +363,22 @@ public class SkateRampArea {
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
                 System.out.println(sk8erBoi.calculateAreaCos(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                i += 1;
+                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange);
+            }
+            System.out.println(sk8erBoi.numRect + " rectangles were used.");
+        } else if (sk8erBoi.function.matches("atan")) {
+            int i = 1;
+            while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
+                System.out.println(sk8erBoi.calculateAreaArctan(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                i += 1;
+                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange);
+            }
+            System.out.println(sk8erBoi.numRect + " rectangles were used.");
+        } else if (sk8erBoi.function.matches("asin")) {
+            int i = 1;
+            while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
+                System.out.println(sk8erBoi.calculateAreaArcsin(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
                 i += 1;
                 System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange);
             }
