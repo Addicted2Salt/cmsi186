@@ -11,19 +11,20 @@ public class SkateRampArea {
 
 
     //may need more than these
-    private double[]    coeffs          = null;
-    private int         numCoeff        = 0;
-    private String      function        = "";
-    private double      currentArea     = 0.0;
-    private double      previousArea    = 0.0;
-    private double      epsilon         = DEFAULT_PERCENT;
-    private double      lastArea        = 0.0;
-    private double      prcntChange     = 100.0;
-    private double      lowerBound      = 0.0;
-    private double      upperBound      = 0.0;
+    private double[]    coeffs               = null;
+    private int         numCoeff             = 0;
+    private String      function             = "";
+    private double      currentArea          = 0.0;
+    private String      currentAreaString    = "";
+    private double      previousArea         = 0.0;
+    private double      epsilon              = DEFAULT_PERCENT;
+    private String      lastArea             = "";
+    private double      prcntChange          = 100.0;
+    private String      prcntChangeString    = "";
+    private double      lowerBound           = 0.0;
+    private double      upperBound           = 0.0;
     private DecimalFormat df = new DecimalFormat( "#00.0000" );
     private int         numRect         = 1;
-    private String[] functions = { "poly", "sin", "cos", "arctan", "asin", "acos", "tanh", "cosh", "sinh" };
 
     public SkateRampArea () {
 
@@ -72,7 +73,11 @@ public class SkateRampArea {
             if (args.length < 3) {
                 throw new IllegalArgumentException("not enough arguments for an hyperbolic tan function.");
             } 
-        }else if (
+        } else if (function.matches("runtests")) {
+            if (args.length > 1) {
+                throw new IllegalArgumentException("too many arguments for tests.");
+            }
+        } else if (
             !function.matches("poly")   || 
             !function.matches("sin")    || 
             !function.matches("cos")    ||
@@ -81,6 +86,7 @@ public class SkateRampArea {
             !function.matches("sinh")   ||
             !function.matches("cosh")   ||
             !function.matches("tanh")   ||
+            !function.matches("runtests") ||
             !function.matches("asin")) {
             throw new IllegalArgumentException("Unexpected function name.");
         }
@@ -220,11 +226,14 @@ public class SkateRampArea {
 
         if (n == 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             previousArea = totalArea;
         } else if (n > 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             updatePercentChange(currentArea, previousArea);
             previousArea = currentArea;
+            lastArea = df.format(currentArea);
         }
         // System.out.println("C: " + currentArea);
         // System.out.println("P: " + previousArea);
@@ -245,17 +254,19 @@ public class SkateRampArea {
             midpoint = getMidpoint(lb, rectLength, i);
             yCoord = 0.0;
             yCoord = (Math.sin(midpoint));
-            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
             totalArea += yCoord * rectLength;
         }
 
         if (n == 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             previousArea = totalArea;
         } else if (n > 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             updatePercentChange(currentArea, previousArea);
             previousArea = currentArea;
+            lastArea = df.format(currentArea);
         }
         
         return totalArea;
@@ -274,17 +285,19 @@ public class SkateRampArea {
             midpoint = getMidpoint(lb, rectLength, i);
             yCoord = 0.0;
             yCoord = (Math.cos(midpoint));
-            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
             totalArea += yCoord * rectLength;
         }
 
         if (n == 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             previousArea = totalArea;
         } else if (n > 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             updatePercentChange(currentArea, previousArea);
             previousArea = currentArea;
+            lastArea = df.format(currentArea);
         }
         
         return totalArea;
@@ -303,17 +316,19 @@ public class SkateRampArea {
             midpoint = getMidpoint(lb, rectLength, i);
             yCoord = 0.0;
             yCoord = (Math.atan(midpoint));
-            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
             totalArea += yCoord * rectLength;
         }
 
         if (n == 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             previousArea = totalArea;
         } else if (n > 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             updatePercentChange(currentArea, previousArea);
             previousArea = currentArea;
+            lastArea = df.format(currentArea);
         }
         
         return totalArea;
@@ -332,17 +347,19 @@ public class SkateRampArea {
             midpoint = getMidpoint(lb, rectLength, i);
             yCoord = 0.0;
             yCoord = (Math.asin(midpoint));
-            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
             totalArea += yCoord * rectLength;
         }
 
         if (n == 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             previousArea = totalArea;
         } else if (n > 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             updatePercentChange(currentArea, previousArea);
             previousArea = currentArea;
+            lastArea = df.format(currentArea);
         }
         
         return totalArea;
@@ -361,17 +378,19 @@ public class SkateRampArea {
             midpoint = getMidpoint(lb, rectLength, i);
             yCoord = 0.0;
             yCoord = (Math.acos(midpoint));
-            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
             totalArea += yCoord * rectLength;
         }
 
         if (n == 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             previousArea = totalArea;
         } else if (n > 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             updatePercentChange(currentArea, previousArea);
             previousArea = currentArea;
+            lastArea = df.format(currentArea);
         }
         
         return totalArea;
@@ -390,17 +409,19 @@ public class SkateRampArea {
             midpoint = getMidpoint(lb, rectLength, i);
             yCoord = 0.0;
             yCoord = (Math.tanh(midpoint));
-            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
             totalArea += yCoord * rectLength;
         }
 
         if (n == 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             previousArea = totalArea;
         } else if (n > 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             updatePercentChange(currentArea, previousArea);
             previousArea = currentArea;
+            lastArea = df.format(currentArea);
         }
         
         return totalArea;
@@ -419,17 +440,19 @@ public class SkateRampArea {
             midpoint = getMidpoint(lb, rectLength, i);
             yCoord = 0.0;
             yCoord = (Math.cosh(midpoint));
-            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
             totalArea += yCoord * rectLength;
         }
 
         if (n == 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             previousArea = totalArea;
         } else if (n > 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             updatePercentChange(currentArea, previousArea);
             previousArea = currentArea;
+            lastArea = df.format(currentArea);
         }
         
         return totalArea;
@@ -448,31 +471,30 @@ public class SkateRampArea {
             midpoint = getMidpoint(lb, rectLength, i);
             yCoord = 0.0;
             yCoord = (Math.sinh(midpoint));
-            System.out.println("Midpoint: " + midpoint + " Y: " + yCoord + " Length: " + rectLength + " Rectangles: " + n);
             totalArea += yCoord * rectLength;
         }
 
         if (n == 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             previousArea = totalArea;
         } else if (n > 1) {
             currentArea = totalArea;
+            currentAreaString = df.format(currentArea);
             updatePercentChange(currentArea, previousArea);
             previousArea = currentArea;
+            lastArea = df.format(currentArea);
         }
         
         return totalArea;
     }
 
-    public double updatePercentChange (double cArea, double pArea) {
+    public String updatePercentChange (double cArea, double pArea) {
         prcntChange = Math.abs(1 - (cArea / pArea));
-        return prcntChange;
+        prcntChangeString = df.format(prcntChange);
+        return prcntChangeString;
     }
 
-    public String coeffsToString () {
-        String coeffString = Arrays.toString(coeffs);
-        return coeffString;
-    }
     public double getLength (double lb, double ub, int numRect) {
         double length = ( ub - lb ) / numRect;
         return length;
@@ -483,23 +505,176 @@ public class SkateRampArea {
         return midpoint;
     }
 
+    public void runtests () {
+        double midpoint = 0.0;
+        double rectLength = 0.0;
+
+        System.out.println("NOW RUNNING 10 TESTS PER METHOD \n \n");
+        System.out.println("TESTING GET MIDPOINT \n \n");
+        midpoint = getMidpoint(5, 26, 1);
+        System.out.println("<Lower Bound: 5> <Length: 26> \n<Midpoint: " + midpoint + ">");
+        midpoint = getMidpoint(-5, 3, 1);
+        System.out.println("<Lower Bound: -5> <Length: 3> \n<Midpoint: " + midpoint + ">");
+        midpoint = getMidpoint(6, 12, 1);
+        System.out.println("<Lower Bound: 6> <Length: 12> \n<Midpoint: " + midpoint + ">");
+        midpoint = getMidpoint(1, 15, 1);
+        System.out.println("<Lower Bound: 1> <Length: 15> \n<Midpoint: " + midpoint + ">");
+        midpoint = getMidpoint(-7, 7, 1);
+        System.out.println("<Lower Bound: -7> <Length: 7> \n<Midpoint: " + midpoint + ">");
+        midpoint = getMidpoint(-9.3, 18, 1);
+        System.out.println("<Lower Bound: -9.3> <Length: 18> \n<Midpoint: " + midpoint + ">");
+        midpoint = getMidpoint(12, 4, 1);
+        System.out.println("<Lower Bound: 12> <Length: 4> \n<Midpoint: " + midpoint + ">");
+        midpoint = getMidpoint(4, 0.25, 1);
+        System.out.println("<Lower Bound: 4> <Length: 0.25> \n<Midpoint: " + midpoint + ">");
+        midpoint = getMidpoint(6.7, 3.6, 1);
+        System.out.println("<Lower Bound: 6.7> <Length: 3.6> \n<Midpoint: " + midpoint + ">");
+        midpoint = getMidpoint(2, 0.47, 1);
+        System.out.println("<Lower Bound: 2> <Length: 0.47> \n<Midpoint: " + midpoint + ">");
+
+        System.out.println("\n \nTESTING GET LENGTH \n \n");
+        rectLength = getLength(-9.4, 14, 16);
+        System.out.println("<Lower bound: -9.4> <Length: 14> <Num of Rectangles: 16> \n<Length: " + df.format(rectLength) + ">");
+        rectLength = getLength(-0.01, 3.2, 8);
+        System.out.println("<Lower bound: -0.01> <Length: 3.2> <Num of Rectangles: 8> \n<Length: " + df.format(rectLength) + ">");
+        rectLength = getLength(5.5, 6.4, 9);
+        System.out.println("<Lower bound: 5.5> <Length: 6.4> <Num of Rectangles: 9> \n<Length: " + df.format(rectLength) + ">");
+        rectLength = getLength(6.7, 7.4, 16);
+        System.out.println("<Lower bound: 6.7> <Length: 7.4> <Num of Rectangles: 16> \n<Length: " + df.format(rectLength) + ">");
+        rectLength = getLength(-8.4, 16.7, 42);
+        System.out.println("<Lower bound: -8.4> <Length: 16.7> <Num of Rectangles: 42> \n<Length: " + df.format(rectLength) + ">");
+        rectLength = getLength(-1, 11.7, 24);
+        System.out.println("<Lower bound: -1> <Length: 11.7> <Num of Rectangles: 24> \n<Length: " + df.format(rectLength) + ">");
+        rectLength = getLength(-3, 82, 100);
+        System.out.println("<Lower bound: -3> <Length: 82> <Num of Rectangles: 100> \n<Length: " + df.format(rectLength) + ">");
+        rectLength = getLength(-9.4, 6, 92);
+        System.out.println("<Lower bound: -9.4> <Length: 6> <Num of Rectangles: 92> \n<Length: " + df.format(rectLength) + ">");
+        rectLength = getLength(-9.465, 18.456, 16);
+        System.out.println("<Lower bound: -9.465> <Length: 18.456> <Num of Rectangles: 16> \n<Length: " + df.format(rectLength) + ">");
+        rectLength = getLength(7.4, 16.456, 94);
+        System.out.println("<Lower bound: 7.4> <Length: 16.456> <Num of Rectangles: 94> \n<Length: " + df.format(rectLength) + ">");
+
+        System.out.println("\n \nTESTING UPDATE PERCENT CHANGE \n \n");
+        updatePercentChange(100, 97);
+        System.out.println("<Current Area: 100> <Previous Area: 97> \n<PercentChange: " + prcntChangeString + "%");
+        updatePercentChange(47, 8);
+        System.out.println("<Current Area: 47> <Previous Area: 8> \n<PercentChange: " + prcntChangeString + "%");
+        updatePercentChange(11548.4562, 2674.1564);
+        System.out.println("<Current Area: 11548.4562> <Previous Area: 2674.1564> \n<PercentChange: " + prcntChangeString + "%");
+        updatePercentChange(19453.65431, 9864.3546);
+        System.out.println("<Current Area: 19453.65431> <Previous Area: 9864.3546> \n<PercentChange: " + prcntChangeString + "%");
+        updatePercentChange(32.126, 432.12);
+        System.out.println("<Current Area: 32.126> <Previous Area: 432.12> \n<PercentChange: " + prcntChangeString + "%");
+        updatePercentChange(2.156, 43);
+        System.out.println("<Current Area: 2.156> <Previous Area: 43> \n<PercentChange: " + prcntChangeString + "%");
+        updatePercentChange(6.54, 42.3);
+        System.out.println("<Current Area: 6.54> <Previous Area: 42.3> \n<PercentChange: " + prcntChangeString + "%");
+        updatePercentChange(112674.123, 45631.123);
+        System.out.println("<Current Area: 112674.123> <Previous Area: 45631.123> \n<PercentChange: " + prcntChangeString + "%");
+        updatePercentChange(654.1235, 5641.2);
+        System.out.println("<Current Area: 654.1235> <Previous Area: 5641.2> \n<PercentChange: " + prcntChangeString + "%");
+        updatePercentChange(43654, 35441);
+        System.out.println("<Current Area: 43654> <Previous Area: 35441> \n<PercentChange: " + prcntChangeString + "%");
+
+        System.out.println("\n \nTESTING CALCULATE POLYNOMIAL AREA \n \n");
+        double[] co1 = {10, 2, -3};
+        double[] co2 = {-4, -7, -3, -54};
+        double[] co3 = {6, 12, -34, -4};
+        double[] co4 = {0, -2, -13, 5, 6};
+        double[] co5 = {13, 12, -3, 0, 9};
+        double[] co6 = {10, 21, -23, 1};
+        double[] co7 = {10, 20, -3};
+        double[] co8 = {-400, 2, -30};
+        double[] co9 = {2, -3};
+        double[] co10 = {11, -232, -3};
+        double ub1   = 2.0;
+        double ub2   = -12.0;
+        double ub3   = -232.0;
+        double ub4   = 32.0;
+        double ub5   = 62.0;
+        double ub6   = 342.0;
+        double ub7   = 982.0;
+        double ub8   = 12432.0;
+        double ub9   = -432.0;
+        double ub10   = 2.2345;
+        double lb1  = -3.2;
+        double lb2  = -153.2;
+        double lb3  = -6553.2;
+        double lb4  = 3.2;
+        double lb5  = 53.2;
+        double lb6  = 53.2;
+        double lb7  = 553.2;
+        double lb8  = 6553.2;
+        double lb9  = -553.2;
+        double lb10  = -1.2;
+        double[]    upperBounds = {ub1, ub2, ub3, ub4, ub5, ub6, ub7, ub8, ub9, ub10};
+        double[]    lowerBounds = {lb1, lb2, lb3, lb4, lb5, lb6, lb7, lb8, lb9, lb10};
+        double[][] polyArray = {co1, co2, co3, co4, co5, co6, co7, co8, co9, co10};
+        for ( int j = 0; j < polyArray.length; j++){
+            coeffs = polyArray[j];
+            upperBound = upperBounds[j];
+            lowerBound = lowerBounds[j];
+            prcntChange = 100.0;
+            System.out.println("<Coefficients: " + Arrays.toString(polyArray[j]) + ">");
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            int i = 0;
+            while (prcntChange > epsilon) {
+                calculateAreaPoly(lowerBounds[j], upperBounds[j], polyArray[j], i);
+                i += 1;
+            }
+            System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
+        }   
+
+        System.out.println("\n \nTESTING CALCULATE SINE AREA \n \n");
+        System.out.println("Using bounds from poly function.\n");
+        for (int j = 0; j < 10; j++ ) {
+            upperBound = upperBounds[j];
+            lowerBound = lowerBounds[j];
+            prcntChange = 100.0;
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            int i = 0;
+            while (prcntChange > epsilon) {
+                calculateAreaSin(lowerBound, upperBound, i);
+                i += 1;
+            }
+            System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
+        }
+
+        System.out.println("\n \nTESTING CALCULATE COSINE AREA \n \n");
+        System.out.println("Using bounds from poly function.\n");
+        for (int j = 0; j < 10; j++ ) {
+            upperBound = upperBounds[j];
+            lowerBound = lowerBounds[j];
+            prcntChange = 100.0;
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            int i = 0;
+            while (prcntChange > epsilon) {
+                calculateAreaCos(lowerBound, upperBound, i);
+                i += 1;
+            }
+            System.out.println("Area: " + lastArea + " \n" + numRect + " rectangles were used. \n");
+        }
+
+    }
+
     public static void main( String[] args ) {
+        System.out.println(args[0]);
+        //change name before turn in
+        SkateRampArea sk8erBoi = new SkateRampArea();
+        if (args[0].matches("runtests")) {
+            sk8erBoi.runtests();
+        } else {
         System.out.println( "\n   Welcome to my SkateRampArea program!" );
         System.out.println( "\n   This program allows you to estimate the area of the following functions: \n");
         System.out.println( "     <poly:    <coefficients, lower bound, upper bound, optional %> >");
         System.out.println( "     <sin:     <lower bound, upper bound, optional %> >");
         System.out.println( "     <cos:     <lower bound, upper bound, optional %> >");
-        System.out.println( "     <tan:     <lower bound, upper bound, optional %> >");
         System.out.println( "     <asin:    <lower bound [>= -1], upper bound [<= 1], optional %> >");
         System.out.println( "     <acos:    <lower bound [>= -1], upper bound [<= 1], optional %> >");
         System.out.println( "     <atan:    <lower bound, upper bound, optional %> >");
         System.out.println( "     <sinh:    <lower bound, upper bound, optional %> >");
         System.out.println( "     <cosh:    <lower bound, upper bound, optional %> >");
-        System.out.println( "     <sinh:    <lower bound, upper bound, optional %> >");
-
-        
-        //change name before turn in
-        SkateRampArea sk8erBoi = new SkateRampArea();
+        System.out.println( "     <sinh:    <lower bound, upper bound, optional %> >\n \n");
 
         try {
             sk8erBoi.validateArgsAndSetupIntegration(args);
@@ -509,85 +684,106 @@ public class SkateRampArea {
         }
 
         if (sk8erBoi.function.matches("poly")) {
+            System.out.println("Calculating a polynomial function. \n");
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
-                System.out.println(sk8erBoi.calculateAreaPoly(sk8erBoi.lowerBound, sk8erBoi.upperBound, sk8erBoi.coeffs, i));
+                sk8erBoi.calculateAreaPoly(sk8erBoi.lowerBound, sk8erBoi.upperBound, sk8erBoi.coeffs, i);
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+                System.out.println("Rectangles: " + i);
+                System.out.println("Current Area: " + sk8erBoi.currentAreaString);
+                System.out.println(sk8erBoi.prcntChangeString + "% change \n");
             }
-            sk8erBoi.lastArea = sk8erBoi.currentArea;
-            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
+            System.out.println(sk8erBoi.prcntChangeString + " is less than " + sk8erBoi.epsilon );
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " \n" + sk8erBoi.numRect + " rectangles were used. \n \n");
         } else if (sk8erBoi.function.matches("sin")) {
+            System.out.println("Calculating a sine function.\n");
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
-                System.out.println(sk8erBoi.calculateAreaSin(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                sk8erBoi.calculateAreaSin(sk8erBoi.lowerBound, sk8erBoi.upperBound, i);
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+                System.out.println("Rectangles: " + i);
+                System.out.println("Current Area: " + sk8erBoi.currentAreaString);
+                System.out.println(sk8erBoi.prcntChangeString + "% change \n");
             }
-            sk8erBoi.lastArea = sk8erBoi.currentArea;
-            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " \n" + sk8erBoi.numRect + " rectangles were used. \n \n");
         } else if (sk8erBoi.function.matches("cos")) {
+            System.out.println("Calculating a cosine function.\n");
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
-                System.out.println(sk8erBoi.calculateAreaCos(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                sk8erBoi.calculateAreaCos(sk8erBoi.lowerBound, sk8erBoi.upperBound, i);
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+                System.out.println("Rectangles: " + i);
+                System.out.println("Current Area: " + sk8erBoi.currentAreaString);
+                System.out.println(sk8erBoi.prcntChangeString + "% change \n");
             }
-            sk8erBoi.lastArea = sk8erBoi.currentArea;
-            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " \n" + sk8erBoi.numRect + " rectangles were used. \n \n");
         } else if (sk8erBoi.function.matches("atan")) {
+            System.out.println("Calculating a inverse tangent function.\n");
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
-                System.out.println(sk8erBoi.calculateAreaArctan(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                sk8erBoi.calculateAreaArctan(sk8erBoi.lowerBound, sk8erBoi.upperBound, i);
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+                System.out.println("Rectangles: " + i);
+                System.out.println("Current Area: " + sk8erBoi.currentAreaString);
+                System.out.println(sk8erBoi.prcntChangeString + "% change \n");            
             }
-            sk8erBoi.lastArea = sk8erBoi.currentArea;
-            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " \n" + sk8erBoi.numRect + " rectangles were used. \n \n");
         } else if (sk8erBoi.function.matches("asin")) {
+            System.out.println("Calculating a inverse sine function.\n");
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
-                System.out.println(sk8erBoi.calculateAreaArcsin(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                sk8erBoi.calculateAreaArcsin(sk8erBoi.lowerBound, sk8erBoi.upperBound, i);
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+                System.out.println("Rectangles: " + i);
+                System.out.println("Current Area: " + sk8erBoi.currentAreaString);
+                System.out.println(sk8erBoi.prcntChangeString + "% change \n");            
             }
-            sk8erBoi.lastArea = sk8erBoi.currentArea;
-            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " \n" + sk8erBoi.numRect + " rectangles were used. \n \n");
         } else if (sk8erBoi.function.matches("acos")) {
+            System.out.println("Calculating a inverse cosine function.\n");
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
-                System.out.println(sk8erBoi.calculateAreaArccos(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                sk8erBoi.calculateAreaArccos(sk8erBoi.lowerBound, sk8erBoi.upperBound, i);
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+                System.out.println("Rectangles: " + i);
+                System.out.println("Current Area: " + sk8erBoi.currentAreaString);
+                System.out.println(sk8erBoi.prcntChangeString + "% change \n");            
             }
-            sk8erBoi.lastArea = sk8erBoi.currentArea;
-            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " \n" + sk8erBoi.numRect + " rectangles were used. \n \n");
         } else if (sk8erBoi.function.matches("cosh")) {
+            System.out.println("Calculating a hyperbolic cosine function.\n");
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
-                System.out.println(sk8erBoi.calculateAreaCosh(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                sk8erBoi.calculateAreaCosh(sk8erBoi.lowerBound, sk8erBoi.upperBound, i);
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+                System.out.println("Rectangles: " + i);
+                System.out.println("Current Area: " + sk8erBoi.currentAreaString);
+                System.out.println(sk8erBoi.prcntChangeString + "% change \n");            
             }
-            sk8erBoi.lastArea = sk8erBoi.currentArea;
-            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " \n" + sk8erBoi.numRect + " rectangles were used. \n \n");
         } else if (sk8erBoi.function.matches("sinh")) {
+            System.out.println("Calculating a hyperbolic sine function.\n");
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
-                System.out.println(sk8erBoi.calculateAreaSinh(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                sk8erBoi.calculateAreaSinh(sk8erBoi.lowerBound, sk8erBoi.upperBound, i);
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+                System.out.println("Rectangles: " + i);
+                System.out.println("Current Area: " + sk8erBoi.currentAreaString);
+                System.out.println(sk8erBoi.prcntChangeString + "% change \n");            
             }
-            sk8erBoi.lastArea = sk8erBoi.currentArea;
-            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " \n" + sk8erBoi.numRect + " rectangles were used. \n \n");
         } else if (sk8erBoi.function.matches("tanh")) {
+            System.out.println("Calculating a hyperbolic tangent function.\n");
             int i = 1;
             while (sk8erBoi.prcntChange > sk8erBoi.epsilon) {
-                System.out.println(sk8erBoi.calculateAreaTanh(sk8erBoi.lowerBound, sk8erBoi.upperBound, i));
+                sk8erBoi.calculateAreaTanh(sk8erBoi.lowerBound, sk8erBoi.upperBound, i);
                 i += 1;
-                System.out.println(sk8erBoi.function + " " + " " + sk8erBoi.prcntChange + "\n");
+                System.out.println("Rectangles: " + i);
+                System.out.println("Current Area: " + sk8erBoi.currentAreaString);
+                System.out.println(sk8erBoi.prcntChangeString + "% change \n");
             }
-            sk8erBoi.lastArea = sk8erBoi.currentArea;
-            System.out.println("Final Area: " + sk8erBoi.lastArea + " " + sk8erBoi.numRect + " rectangles were used.");        }
+            System.out.println("Final Area: " + sk8erBoi.lastArea + " \n" + sk8erBoi.numRect + " rectangles were used. \n \n");
+          }
     }
+}
 }
