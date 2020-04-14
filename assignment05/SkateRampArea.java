@@ -632,15 +632,19 @@ public class SkateRampArea {
         updatePercentChange(43654, 35441);
         System.out.println("<Current Area: 43654> <Previous Area: 35441> \n<PercentChange: " + prcntChangeString + "%");
 
-        System.out.println("\n \n*****TESTING CALCULATE POLYNOMIAL AREA***** \n \n");
-
+        System.out.println("\n \n*****TESTING CALCULATE POLYNOMIAL AREA*****");
+        System.out.println("*****FIRST FIVE TESTS WITH DEFAULT EPSILON***** \n \n");
         for ( int j = 0; j < polyArray.length; j++){
+            epsilon = DEFAULT_PERCENT;
+            if (j > 4) {
+                epsilon = (j*0.4 - .2*j)/100 ;
+            }
             coeffs = polyArray[j];
             upperBound = upperBounds[j];
             lowerBound = lowerBounds[j];
             prcntChange = 100.0;
             System.out.println("<Coefficients: " + Arrays.toString(polyArray[j]) + ">");
-            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            System.out.println("<Lower Bound: " + lowerBounds[j] + ">  <Upper Bound: " + upperBounds[j] + ">" + "  <Target Percent Difference: " + epsilon*100 + "% >"); 
             int i = 0;
             while (prcntChange > epsilon) {
                 calculateAreaPoly(lowerBounds[j], upperBounds[j], polyArray[j], i);
@@ -650,12 +654,17 @@ public class SkateRampArea {
         }   
 
         System.out.println("\n \n*****TESTING CALCULATE SINE AREA***** \n \n");
+        System.out.println("*****FIRST FIVE TESTS WITH DEFAULT EPSILON***** \n \n");
         System.out.println("Using bounds from poly function.\n");
         for (int j = 0; j < 10; j++ ) {
+            epsilon = DEFAULT_PERCENT;
+            if (j > 4) {
+                epsilon = (j*0.4 - .2*j)/100 ;
+            }
             upperBound = upperBounds[j];
             lowerBound = lowerBounds[j];
             prcntChange = 100.0;
-            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            System.out.println("<Lower Bound: " + lowerBounds[j] + ">  <Upper Bound: " + upperBounds[j] + ">" + "  <Target Percent Difference: " + epsilon*100 + "% >"); 
             int i = 0;
             while (prcntChange > epsilon) {
                 calculateAreaSin(lowerBound, upperBound, i);
@@ -665,12 +674,17 @@ public class SkateRampArea {
         }
 
         System.out.println("\n \n*****TESTING CALCULATE COSINE AREA***** \n \n");
+        System.out.println("*****FIRST FIVE TESTS WITH DEFAULT EPSILON***** \n \n");
         System.out.println("Using bounds from poly function.\n");
         for (int j = 0; j < 10; j++ ) {
+            epsilon = DEFAULT_PERCENT;
+            if (j > 4) {
+                epsilon = (j*0.4 - .2*j)/100 ;
+            }
             upperBound = upperBounds[j];
             lowerBound = lowerBounds[j];
             prcntChange = 100.0;
-            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">" + "  <Target Percent Difference: " + epsilon*100 + "% >"); 
             int i = 0;
             while (prcntChange > epsilon) {
                 calculateAreaCos(lowerBound, upperBound, i);
@@ -680,12 +694,16 @@ public class SkateRampArea {
         }
 
         System.out.println("\n \n*****TESTING CALCULATE INVERSE SINE AREA***** \n \n");
-        
+        System.out.println("*****FIRST FIVE TESTS WITH DEFAULT EPSILON***** \n \n");
         for (int j = 0; j < 10; j++ ) {
+            epsilon = DEFAULT_PERCENT;
+            if (j > 4) {
+                epsilon = (j*0.4 - .2*j)/100 ;
+            }
             upperBound = aupperBounds[j];
             lowerBound = alowerBounds[j];
             prcntChange = 100.0;
-            System.out.println("<Lower Bound: " + alowerBounds[j] + "> Upper Bound: " + aupperBounds[j] + ">"); 
+            System.out.println("<Lower Bound: " + alowerBounds[j] + "> Upper Bound: " + aupperBounds[j] + ">" + "  <Target Percent Difference: " + epsilon*100 + "% >");
             int i = 0;
             while (prcntChange > epsilon) {
                 calculateAreaArcsin(lowerBound, upperBound, i);
@@ -695,12 +713,16 @@ public class SkateRampArea {
         }
 
         System.out.println("\n \n*****TESTING CALCULATE INVERSE COSINE AREA***** \n \n");
-
+        System.out.println("*****FIRST FIVE TESTS WITH DEFAULT EPSILON***** \n \n");
         for (int j = 0; j < 10; j++ ) {
+            epsilon = DEFAULT_PERCENT;
+            if (j > 4) {
+                epsilon = (j*0.4 - .2*j)/100 ;
+            }
             upperBound = aupperBounds[j];
             lowerBound = alowerBounds[j];
             prcntChange = 100.0;
-            System.out.println("<Lower Bound: " + alowerBounds[j] + "> Upper Bound: " + aupperBounds[j] + ">"); 
+            System.out.println("<Lower Bound: " + alowerBounds[j] + "> Upper Bound: " + aupperBounds[j] + ">" + "  <Target Percent Difference: " + epsilon*100 + "% >");
             int i = 0;
             while (prcntChange > epsilon) {
                 calculateAreaArccos(lowerBound, upperBound, i);
@@ -710,13 +732,17 @@ public class SkateRampArea {
         }
 
         System.out.println("\n \n*****TESTING CALCULATE INVERSE TANGENT AREA***** \n \n");
-
+        System.out.println("*****FIRST FIVE TESTS WITH DEFAULT EPSILON***** \n \n");
         System.out.println("Using bounds from poly function.\n");
         for (int j = 0; j < 10; j++ ) {
+            epsilon = DEFAULT_PERCENT;
+            if (j > 4) {
+                epsilon = (j*0.4 - .2*j)/100 ;
+            }
             upperBound = upperBounds[j];
             lowerBound = lowerBounds[j];
             prcntChange = 100.0;
-            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">" + "  <Target Percent Difference: " + epsilon*100 + "% >"); 
             int i = 0;
             while (prcntChange > epsilon) {
                 calculateAreaArctan(lowerBound, upperBound, i);
@@ -726,13 +752,17 @@ public class SkateRampArea {
         }
 
         System.out.println("\n \n*****TESTING CALCULATE HYPERBOLIC SINE AREA***** \n \n");
-
+        System.out.println("*****FIRST FIVE TESTS WITH DEFAULT EPSILON***** \n \n");
         System.out.println("Using bounds from poly function.\n");
         for (int j = 0; j < 10; j++ ) {
+            epsilon = DEFAULT_PERCENT;
+            if (j > 4) {
+                epsilon = (j*0.4 - .2*j)/100 ;
+            }
             upperBound = upperBounds[j];
             lowerBound = lowerBounds[j];
             prcntChange = 100.0;
-            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">" + "  <Target Percent Difference: " + epsilon*100 + "% >"); 
             int i = 0;
             while (prcntChange > epsilon) {
                 calculateAreaSinh(lowerBound, upperBound, i);
@@ -743,13 +773,17 @@ public class SkateRampArea {
 
         
         System.out.println("\n \n*****TESTING CALCULATE HYPERBOLIC COSINE AREA***** \n \n");
-
+        System.out.println("*****FIRST FIVE TESTS WITH DEFAULT EPSILON***** \n \n");
         System.out.println("Using bounds from poly function.\n");
         for (int j = 0; j < 10; j++ ) {
+            epsilon = DEFAULT_PERCENT;
+            if (j > 4) {
+                epsilon = (j*0.4 - .2*j)/100 ;
+            }
             upperBound = upperBounds[j];
             lowerBound = lowerBounds[j];
             prcntChange = 100.0;
-            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">" + "  <Target Percent Difference: " + epsilon*100 + "% >"); 
             int i = 0;
             while (prcntChange > epsilon) {
                 calculateAreaCosh(lowerBound, upperBound, i);
@@ -760,13 +794,17 @@ public class SkateRampArea {
 
         
         System.out.println("\n \n*****TESTING CALCULATE HYPERBOLIC TANGENT AREA***** \n \n");
-
+        System.out.println("*****FIRST FIVE TESTS WITH DEFAULT EPSILON***** \n \n");
         System.out.println("Using bounds from poly function.\n");
         for (int j = 0; j < 10; j++ ) {
+            epsilon = DEFAULT_PERCENT;
+            if (j > 4) {
+                epsilon = (j*0.4 - .2*j)/100 ;
+            }
             upperBound = upperBounds[j];
             lowerBound = lowerBounds[j];
             prcntChange = 100.0;
-            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">"); 
+            System.out.println("<Lower Bound: " + lowerBounds[j] + "> Upper Bound: " + upperBounds[j] + ">" + "  <Target Percent Difference: " + epsilon*100 + "% >"); 
             int i = 0;
             while (prcntChange > epsilon) {
                 calculateAreaTanh(lowerBound, upperBound, i);
