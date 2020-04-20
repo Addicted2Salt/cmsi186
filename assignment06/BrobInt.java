@@ -18,7 +18,7 @@
 import java.util.Arrays;
 import java.io.IOException;
 
-public class BrobIntTemplate {
+public class BrobInt {
 
    public static final BrobInt ZERO     = new BrobInt(  "0" );      /// Constant for "zero"
    public static final BrobInt ONE      = new BrobInt(  "1" );      /// Constant for "one"
@@ -53,7 +53,7 @@ public class BrobIntTemplate {
    *   for later use
    *  @param  value  String value to make into a BrobInt
    */
-   public BrobIntTemplate( String value ) {
+   public BrobInt( String value ) {
       	// Complete the code to accomplish what is in the javadoc text
    }
 
