@@ -571,103 +571,103 @@ public class BrobIntTester {
 
       try {
          System.out.println( "    Test 014: Adding g11 and g12: " );
-         System.out.println( "      expecting: 30 and got " + g11.add( g12 ) );
+         System.out.println( "      expecting: 30 and got " + (g11.add( g12 )).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014a: Adding t6 and t7: " );
-         System.out.println( "      expecting: 98423864442223257062654545 and got " + t6.add( t7 ) );
+         System.out.println( "      expecting: 98423864442223257062654545 and got " + (t6.add( t7 )).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014b: Adding t9 and t6: " );
-         System.out.println( "      expecting: exception and got " + t9.add( t6 ) );
+         System.out.println( "      expecting: exception and got " + (t9.add( t6 )).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014c: Adding t6 and t8: " );
-         System.out.println( "      expecting: -4444444449692552219 and got " + t6.add( t8 ) );
+         System.out.println( "      expecting: -4444444449692552219 and got " + t6.add( t8 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014d: Adding t6 and t10: " );
-         System.out.println( "      expecting: 163964821 and got " + t6.add( t10 ) );
+         System.out.println( "      expecting: 163964821 and got " + t6.add( t10 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014e: Adding t6 and t12: " );
-         System.out.println( "      expecting: 9987705325433 and got " + t6.add( t12 ) );
+         System.out.println( "      expecting: 9987705325433 and got " + t6.add( t12 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014f: Adding t6 and t13: " );
-         System.out.println( "      expecting: -84521022654897801006631 and got " + t6.add( t13 ) );
+         System.out.println( "      expecting: -84521022654897801006631 and got " + t6.add( t13 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014g: Adding t6 and t15: " );
-         System.out.println( "      expecting: 30 and got " + t6.add( t15 ) );
+         System.out.println( "      expecting: 30 and got " + t6.add( t15 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014h: Adding t6 and t15: " );
-         System.out.println( "      expecting: 20000000666666830867534 and got " + t6.add( t15 ) );
+         System.out.println( "      expecting: 20000000666666830867534 and got " + t6.add( t15 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014i: Adding t16 and t17: " );
-         System.out.println( "      expecting: exception and got " + t16.add( t17 ) );
+         System.out.println( "      expecting: exception and got " + t16.add( t17 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014j: Adding t7 and t8: " );
-         System.out.println( "      expecting: 98423859997778807041675900 and got " + t7.add( t8 ) );
+         System.out.println( "      expecting: 98423859997778807041675900 and got " + t7.add( t8 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014k: Adding t11 and t16: " );
-         System.out.println( "      expecting: exception and got " + t11.add( t16 ) );
+         System.out.println( "      expecting: exception and got " + t11.add( t16 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014l: Adding t7 and t10: " );
-         System.out.println( "      expecting: 98423864442223256898192940 and got " + t7.add( t10 ) );
+         System.out.println( "      expecting: 98423864442223256898192940 and got " + t7.add( t10 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014m: Adding t7 and t12: " );
-         System.out.println( "      expecting: 98423864442233244439553552 and got " + t7.add( t12 ) );
+         System.out.println( "      expecting: 98423864442233244439553552 and got " + t7.add( t12 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014n: Adding t9 and t10: " );
-         System.out.println( "      expecting: exception and got " + t9.add( t10 ) );
+         System.out.println( "      expecting: exception and got " + t9.add( t10 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014o: Adding t5 and t6: " );
-         System.out.println( "      expecting: 164213213 and got " + t5.add( t6 ) );
+         System.out.println( "      expecting: 164213213 and got " + t5.add( t6 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 014p: Adding t16 and t6: " );
-         System.out.println( "      expecting: exception and got " + t16.add( t6 ) );
+         System.out.println( "      expecting: exception and got " + t16.add( t6 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
@@ -823,13 +823,13 @@ public class BrobIntTester {
 
       try {
          System.out.println( "    Test 016s: Adding t17 and t15 [++23422-- + 20000000666666666654321] using bytes: " );
-         System.out.println( "      expecting: exception and got " + t17.add( t15 ) );
+         System.out.println( "      expecting: exception and got " + t17.add( t15 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 016t: Adding t16 and t15 [-2342+ + 20000000666666666654321] using bytes: " );
-         System.out.println( "      expecting: exception and got " + t16.add( t15 ) );
+         System.out.println( "      expecting: exception and got " + t16.add( t15 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
