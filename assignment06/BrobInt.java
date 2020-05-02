@@ -56,9 +56,6 @@ public class BrobInt {
    *  @param  value  String value to make into a BrobInt
    */
    public BrobInt( String value ) {
-      if (!this.validateDigits()) {
-         throw new IllegalArgumentException("\n Error constructing BrobInt. \n");
-      }
 
          if ( value.charAt(0) == '-' ) {
             this.sign = 1;
@@ -69,8 +66,9 @@ public class BrobInt {
          } else {
             this.internalValue = value;
          }
-
-      this.reversed = new String(new StringBuffer(value).reverse());
+      System.out.println(internalValue);
+      this.validateDigits(internalValue);
+      this.reversed = new String(new StringBuffer(internalValue).reverse());
    
       byteVersion = new byte[this.reversed.length()];
       for ( int i = 0; i < this.reversed.length(); i++ ) {
@@ -86,11 +84,11 @@ public class BrobInt {
    *  note that there is no return false, because of throwing the exception
    *  note also that this must check for the '+' and '-' sign digits
    */
-   public boolean validateDigits() {
+   public boolean validateDigits(String args) {
       int i;
-      for (i = 0; i < reversed.length(); i++ ) {
+      for (i = 0; i < args.length(); i++ ) {
          try {
-            Integer.parseInt(String.valueOf(reversed.charAt(i)));
+            Integer.parseInt(String.valueOf(args.charAt(i)));
          } catch (Exception e) {
             throw new IllegalArgumentException("\n    Something is wrong with the input." );
          }
@@ -99,24 +97,6 @@ public class BrobInt {
    }
 
    //Method to turn reversed into an array of Bytes
-   public byte[] toBytes() {
-      int i;
-      byteVersion = new byte[this.reversed.length()];
-      for ( i = 0; i < this.reversed.length(); i++ ) {
-         byteVersion[i] = (byte)Character.getNumericValue(reversed.charAt(i));
-      }
-      return byteVersion;
-   }
-
-   public String byteToString(byte[] bytes) {
-      Object[] newString; 
-      newString = new Object[bytes.length];
-      for( int i = 0; i < bytes.length; i++ ) {
-         newString[i] = bytes[i];
-      }
-      String reverseString = new String(new StringBuffer(Arrays.toString(newString)).reverse());
-      return reverseString;
-   }
 
   /**
    *  Method to add the value of a BrobInt passed as argument to this BrobInt
@@ -151,8 +131,6 @@ public class BrobInt {
          shortBrob = new byte[this.reversed.length()];
          shortBrob = this.byteVersion;
       }
-      System.out.println("long" + Arrays.toString(longBrob));
-      System.out.println("short" + Arrays.toString(shortBrob));
       byte[] newBrob = new byte[Math.max(longBrob.length,shortBrob.length) + 2];
       if (this.sign == bint.sign ) {
          while ( i < shortBrob.length) {
@@ -162,12 +140,6 @@ public class BrobInt {
                carry = 1;
             } else {
                carry = 0;
-            } if ( carry == 1 ) {
-               try {
-                  newBrob[i + 1] += 1;
-               } catch ( Exception e) {
-                  newBrob[i] += 1;
-               }
             }
             i++;
          }
@@ -180,10 +152,12 @@ public class BrobInt {
             carry = 0;
          } if ( carry == 1 ) {
             try {
-               newBrob[i + 1] += 1;
+               newBrob[i] += 10;
             } catch ( Exception e) {
                newBrob[i] += 1;
             }
+            System.out.println(newBrob[i]);
+
          }
          i++;
       }
@@ -201,7 +175,7 @@ public class BrobInt {
             carry = 0;
          } if ( carry == 1 ) {
             try {
-               newBrob[i  + 1] -= 1;
+               newBrob[i + 1] -= 1;
             } catch ( Exception e) {
                newBrob[i] -= 1;
             }
@@ -209,7 +183,7 @@ public class BrobInt {
          i++;
       }
       while ( i < longBrob.length ) {
-         newBrob[i] -= longBrob[i];
+         newBrob[i] += longBrob[i];
          if ( newBrob[i] < 0 ) {
             newBrob[i] += 10;
             carry = 1;
@@ -228,24 +202,24 @@ public class BrobInt {
 
    for ( j = 0; j < newBrob.length; j++ ) {
       if ( newBrob[j] == 0 ) {
-         newString.insert( 0, "0" );
       }
       if ((( newBrob.length - 1 ) == j ) && ( newBrob[j] == 0 )) {
          break;
       }
       newString.insert( 0 , String.valueOf(newBrob[j]) );
+      
 
    }
-      
       BrobInt addedBrob = new BrobInt( (newString.toString()) );
       if ( this.sign == bint.sign ) {
          addedBrob.sign = this.sign;
+
       } else if (( this.compareTo(bint) > 0) && ( unequalSigns )) {
          addedBrob.sign = this.sign;
       } else if (( this.compareTo(bint) < 0) && ( unequalSigns )) {
          addedBrob.sign = bint.sign;
       }
-      System.out.print("added: " + removeLeadingZeros(addedBrob).toString());
+      addedBrob = removeLeadingZeros(addedBrob);
       return addedBrob;
    }
 
@@ -428,14 +402,8 @@ public class BrobInt {
       System.out.println( "\n   You should run your tests from the BrobIntTester...\n" );
 
       BrobInt b1 = null;
-      BrobInt b2 = null;
-      b2 = new BrobInt("22222");
-      try { System.out.println( "   Making a new BrobInt: " ); b1 = new BrobInt( "147258369789456123" ); }
+      try { System.out.println( "   Making a new BrobInt: " ); b1 = new BrobInt( "-1472583hh69789456123" ); }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
-      
-     b1.toBytes();
-     b1.toArray(b1.byteVersion);
-     (b1.add(b2)).toString();
       try { System.out.println( "   expecting: 147258369789456123\n     and got: " + b1.toString() + "\nreversed: " + b1.reversed ); }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
       System.out.println( "\n    Multiplying 82832833 by 3: " );

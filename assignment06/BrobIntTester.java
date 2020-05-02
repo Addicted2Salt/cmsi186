@@ -583,7 +583,7 @@ public class BrobIntTester {
 
       try {
          System.out.println( "    Test 014b: Adding t9 and t6: " );
-         System.out.println( "      expecting: exception and got " + (t9.add( t6 )).toString() );
+         System.out.println( "      expecting: " + t6.toString() + " and got " + (t9.add( t6 )).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
