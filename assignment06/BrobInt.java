@@ -66,7 +66,6 @@ public class BrobInt {
          } else {
             this.internalValue = value;
          }
-      System.out.println(internalValue);
       this.validateDigits(internalValue);
       this.reversed = new String(new StringBuffer(internalValue).reverse());
    
@@ -96,7 +95,6 @@ public class BrobInt {
       return true;
    }
 
-   //Method to turn reversed into an array of Bytes
 
   /**
    *  Method to add the value of a BrobInt passed as argument to this BrobInt
@@ -142,6 +140,7 @@ public class BrobInt {
                carry = 0;
             }
             i++;
+            System.out.println(newBrob[i]);
          }
       while ( i < longBrob.length ) {
          newBrob[i] += longBrob[i] + carry;
@@ -150,16 +149,12 @@ public class BrobInt {
             carry = 1;
          } else {
             carry = 0;
-         } if ( carry == 1 ) {
-            try {
-               newBrob[i] += 10;
-            } catch ( Exception e) {
-               newBrob[i] += 1;
-            }
-            System.out.println(newBrob[i]);
-
-         }
+         } 
          i++;
+         System.out.println(newBrob[i]);
+      }
+      if (carry == 1) {
+         newBrob[i] += 1;
       }
    } else if ( this.sign != bint.sign ) {
       if ( this.internalValue == bint.internalValue ) {
@@ -181,6 +176,7 @@ public class BrobInt {
             }
          }
          i++;
+         System.out.println(newBrob[i]);
       }
       while ( i < longBrob.length ) {
          newBrob[i] += longBrob[i];
@@ -197,6 +193,7 @@ public class BrobInt {
             }
          }
          i++;
+         System.out.println(newBrob[i]);
       }
    }
 
@@ -229,7 +226,49 @@ public class BrobInt {
    *  @return BrobInt that is the difference of the value of this BrobInt and the one passed in
    */
    public BrobInt subtract( BrobInt bint ) {
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+      if ( this.equals(bint)) { 
+         return new BrobInt( "0" );
+      }
+      if ( ( this.sign != bint.sign ) && (bint.sign == 0 )) {
+         bint.sign = 1;
+         return this.add(bint);
+      } else if ((this.sign != bint.sign) && (bint.sign == 1)) {
+         bint.sign = 0;
+         return this.add(bint);
+      }
+      if ( this.sign == 0 ) {
+         if ( (this.compareTo(bint) > 0 ) && (bint.sign == 1)) {
+            bint.sign = 0;
+            return this.add(bint);
+         } else if (( this.compareTo(bint) > 0) && (bint.sign == 0)) {
+            bint.sign = 1;
+            return this.add(bint);
+         }
+         if ((this.compareTo(bint) < 0) && (this.sign == 1)) {
+            this.sign = 0;
+            return this.add(bint);
+         } else if ((this.compareTo(bint) < 0) && (this.sign == 0)) {
+            this.sign = 1;
+            return this.add(bint);
+         }
+      } else {
+         if (( this.compareTo(bint) < 0) && (bint.sign == 1)) {
+            bint.sign = 0;
+            return this.add(bint);
+         } else if (( this.compareTo(bint) < 0 ) && (bint.sign == 0)) {
+            bint.sign = 1;
+            return this.add(bint);
+         }
+
+         if (( this.compareTo(bint) > 0 ) && (this.sign == 1)) {
+            this.sign = 0;
+            return this.add( bint );
+         } else if (( this.compareTo(bint) > 0 ) && (this.sign == 0)) {
+            this.sign = 1;
+            return this.add(bint);
+         }
+      }
+      return null;
    }
 
   /** 
@@ -238,7 +277,14 @@ public class BrobInt {
    *  @return BrobInt that is the product of the value of this BrobInt and the one passed in
    */
    public BrobInt multiply( BrobInt bint ) {
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+      int count = 1; 
+      BrobInt newBrobInt = new BrobInt(this.internalValue);
+      System.out.println("newBrob: " + newBrobInt.internalValue);
+      while (count < Integer.valueOf(bint.internalValue)) {
+         newBrobInt = add(newBrobInt);
+         count = count+1;
+      }
+      return newBrobInt;
    }
 
   /** 
@@ -247,7 +293,44 @@ public class BrobInt {
    *  @return BrobInt that is the dividend of this BrobInt divided by the one passed in
    */
    public BrobInt divide( BrobInt bint ) {
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+      BrobInt newBrob = null;
+      int i = 0;
+      byte tempSign;
+      if ( this.sign != bint.sign ) {
+         if (this.sign == 1) {
+            tempSign = this.sign;
+            this.sign = bint.sign;
+         } else {
+            tempSign = bint.sign;
+            bint.sign = this.sign;
+         }
+      }
+
+      if ( this.equals(bint) ) {
+         return new BrobInt( "1" );
+      } else if (0 > this.compareTo(bint)) {
+         return new BrobInt("0");
+      }
+
+      newBrob = new BrobInt (bint.toString());
+      while ( 0 <= this.compareTo(newBrob)) {
+         newBrob.internalValue = (
+            new BrobInt(newBrob
+            .toString())
+            .add(bint))
+            .toString();
+            i++;
+         for ( int j = 0; j < this.reversed.length(); j++ ) {
+         this.byteVersion[j] = (byte)Character.getNumericValue(reversed.charAt(j));
+         }  
+      }
+      BrobInt dividend = new BrobInt (String.valueOf( i ));
+      if ( this.sign == bint.sign ) {
+         dividend.sign = 0;
+      } else {
+         dividend.sign = 1;
+      }
+      return dividend;
    }
 
   /** 
@@ -256,7 +339,25 @@ public class BrobInt {
    *  @return BrobInt that is the remainder of division of this BrobInt by the one passed in
    */
    public BrobInt remainder( BrobInt bint ) {
-      throw new UnsupportedOperationException( "\n         Sorry, that operation is not yet implemented." );
+      BrobInt a = null;
+      this.sign = bint.sign;
+      if ((this.equals(bint) || (0 > this.compareTo(bint)))) {
+         return new BrobInt( "0" );
+      }
+      a = new BrobInt( bint.toString() );
+      while ( 0 <= this.compareTo(a)) {
+         a.internalValue = ( new BrobInt(a.toString()).add(bint)).toString();
+         for ( int j = 0; j < this.reversed.length(); j++ ) {
+            this.byteVersion[j] = (byte)Character.getNumericValue(reversed.charAt(j));
+            } 
+      }
+      a.internalValue = (new BrobInt(a.toString()).subtract(bint)).toString();
+      for ( int j = 0; j < this.reversed.length(); j++ ) {
+         a.byteVersion[j] = (byte)Character.getNumericValue(reversed.charAt(j));
+         } 
+         System.out.println("Brobbbb: " + this.internalValue);
+         System.out.println(" a: " + a.internalValue);
+      return new BrobInt( this.subtract( a ).toString());
    }
 
   /** 
@@ -402,17 +503,25 @@ public class BrobInt {
       System.out.println( "\n   You should run your tests from the BrobIntTester...\n" );
 
       BrobInt b1 = null;
-      try { System.out.println( "   Making a new BrobInt: " ); b1 = new BrobInt( "-1472583hh69789456123" ); }
+      try { System.out.println( "   Making a new BrobInt: " ); b1 = new BrobInt( "-147258369789456123" ); }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
-      try { System.out.println( "   expecting: 147258369789456123\n     and got: " + b1.toString() + "\nreversed: " + b1.reversed ); }
+      try { System.out.println( "   expecting: 147258369789456123\n     and got: " + b1.toString());}
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
       System.out.println( "\n    Multiplying 82832833 by 3: " );
       try { System.out.println( "      expecting: 248498499\n        and got: " + new BrobInt("82832833").multiply( BrobInt.THREE ) ); }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
-
+      System.out.println( "\n    Multiplying asdf by 3: " );
       System.out.println( "\n    Multiplying 3 by 82832833 and adding 1: " );
-      try { System.out.println( "      expecting: 248498500\n        and got: " + BrobInt.THREE.multiply( new BrobInt( "82832833" ) ).add( BrobInt.ONE ) ); }
+      try { System.out.println( "      expecting: 1240\n        and got: " + BrobInt.THREE.multiply( new BrobInt( "413" ) ).add( BrobInt.ONE ) ); }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
+      try {System.out.println( " expecting 12\n                  and got: " + (new BrobInt("25").subtract(new BrobInt("13"))).toString());
+      } catch (Exception e ) {System.out.println (" Exception thrown");}
+      try { System.out.println( "      expecting: 3\n           and got: " + (new BrobInt("7")).remainder(new BrobInt("4")));
+      } catch (Exception e ) { System.out.println(" Exception thrown: ");
+      }
+      System.out.println( "\n Subtracting 234567 - (-10) " );
+      try {System.out.println( " expecting 234577\n         and got: " + (new BrobInt("234567")).subtract(new BrobInt("-10")) );}
+      catch (Exception e) {System.out.println( "Exception thrown: ");}
       System.exit( 0 );
 
    }
