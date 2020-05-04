@@ -46,8 +46,8 @@ public class BrobIntTester {
    private static String t09String = "++1";
    private static String t10String = "-248392";
    private static String t11String = "seventy three";
-   private static String t12String = "9987541112220";
-   private static String t13String = "-84521022654897965219844";
+   private static String t12String = "9546320";
+   private static String t13String = "-8452102265";
    private static String t14String = "++23sk";
    private static String t15String = "20000000666666666654321";
    private static String t16String = "-2342+";
@@ -601,7 +601,7 @@ public class BrobIntTester {
 
       try {
          System.out.println( "    Test 014e: Adding t6 and t12: " );
-         System.out.println( "      expecting: 9987705325433 and got " + t6.add( t12 ).toString() );
+         System.out.println( "      expecting: 173759533 and got " + t6.add( t12 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
@@ -649,7 +649,7 @@ public class BrobIntTester {
 
       try {
          System.out.println( "    Test 014m: Adding t7 and t12: " );
-         System.out.println( "      expecting: 98423864442233244439553552 and got " + t7.add( t12 ).toString() );
+         System.out.println( "      expecting: 98423864442223256907987652 and got " + t7.add( t12 ).toString() );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
@@ -745,7 +745,7 @@ public class BrobIntTester {
 
       try {
          System.out.println( "    Test 016f: Adding t10 and t8 [-248392 + -4444444449856765432] using bytes: " );
-         System.out.println( "      expecting: -4444444449857013824 and got " + t10.add( t8 ) );
+         System.out.println( "      expecting: 4444444449857013824 and got " + t10.add( t8 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
@@ -775,7 +775,7 @@ public class BrobIntTester {
 
       try {
          System.out.println( "    Test 016k: Adding t13 and t6 [-84521022654897965219844 + 164213213] using bytes: " );
-         System.out.println( "      expecting: -84521022654897801006631 and got " + t13.add( t6 ) );
+         System.out.println( "      expecting: 84521022654897801006631 and got " + t13.add( t6 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
@@ -799,7 +799,7 @@ public class BrobIntTester {
 
       try {
          System.out.println( "    Test 016o: Adding t10 and t10 [-248392 + -248392] using bytes: " );
-         System.out.println( "      expecting: -496784 and got " + t10.add( t10 ) );
+         System.out.println( "      expecting: 496784 and got " + t10.add( t10 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
@@ -865,13 +865,13 @@ public class BrobIntTester {
 
       try {
          System.out.println( "    Test 020: Adding g14 and g15 [-234567 + -10] using bytes: " );
-         System.out.println( "      expecting: -234577 and got " + g14.add( g15 ) );
+         System.out.println( "      expecting: 234577 and got " + g14.add( g15 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 021: Adding g15 and g14 [-10 + -234567] using bytes: " );
-         System.out.println( "      expecting: -234577 and got " + g15.add( g14 ) );
+         System.out.println( "      expecting: 234577 and got " + g15.add( g14 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
@@ -885,13 +885,13 @@ public class BrobIntTester {
 
       try {
          System.out.println( "    Test 023: Adding g14 and g16 [-234567 + -999999] using bytes: " );
-         System.out.println( "      expecting: -1234566 and got " + g14.add( g16 ) );
+         System.out.println( "      expecting: 1234566 and got " + g14.add( g16 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
       try {
          System.out.println( "    Test 024: Adding g16 and g14 [-999999 + -234567] using bytes: " );
-         System.out.println( "      expecting: -1234566 and got " + g16.add( g14 ) );
+         System.out.println( "      expecting: 1234566 and got " + g16.add( g14 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
@@ -1098,7 +1098,7 @@ public class BrobIntTester {
 
       System.out.println( "\n      Test 032: Subtracting g11 take away g13 [10 - 234567] using bytes: " );
       try {
-         System.out.println( "      expecting: -234557\n" +
+         System.out.println( "      expecting: 234557\n" +
                              "        and got: " + g11.subtract( g13 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
@@ -1112,7 +1112,7 @@ public class BrobIntTester {
 
       System.out.println( "\n      Test 034: Subtracting g15 take away g13 [(-10) - 234567] using bytes: " );
       try {
-         System.out.println( "      expecting: -234577\n" +
+         System.out.println( "      expecting: 234577\n" +
                              "        and got: " + g15.subtract( g13 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
@@ -1126,7 +1126,7 @@ public class BrobIntTester {
 
       System.out.println( "\n      Test 036: Subtracting g16 take away g14 [(-999999) - (-234567)] using bytes: " );
       try {
-         System.out.println( "      expecting: -765432\n" +
+         System.out.println( "      expecting: 765432\n" +
                              "        and got: " + g16.subtract( g14 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
@@ -1147,22 +1147,22 @@ public class BrobIntTester {
 
       System.out.println( "\n      Test 037b: Subtracting t12 take away t7 [9987541112220 - 98423864442223256898441332] using bytes: " );
       try {
-         System.out.println( "      expecting: -98426864442213269357329112\n" +
+         System.out.println( "      expecting: 98426864442213269357329112\n" +
                              "        and got: " + t12.subtract( t7 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
-      System.out.println( "\n      Test 037c: Subtracting t7 take away t6 [9987541112220 - 164213213] using bytes: " );
+      System.out.println( "\n      Test 037c: Subtracting t12 take away t6 [9987541112220 - 164213213] using bytes: " );
       try {
          System.out.println( "      expecting: 9987376899007\n" +
                              "        and got: " + t7.subtract( t6 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
-      System.out.println( "\n      Test 037d: Subtracting t6 take away t7 [164213213 - 9987541112220] using bytes: " );
+      System.out.println( "\n      Test 037d: Subtracting t6 take away t12 [164213213 - 9987541112220] using bytes: " );
       try {
-         System.out.println( "      expecting: -9987376899007\n" +
-                             "        and got: " + t6.subtract( t7 ) );
+         System.out.println( "      expecting: 9987376899007\n" +
+                             "        and got: " + t6.subtract( t12 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
 
@@ -1175,7 +1175,7 @@ public class BrobIntTester {
 
       System.out.println( "\n      Test 037f: Subtracting t10 take away t6 [(-248392) - 164213213] using bytes: " );
       try {
-         System.out.println( "      expecting: -164461605\n" +
+         System.out.println( "      expecting: 164461605\n" +
                              "        and got: " + t10.subtract( t6 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
@@ -1196,7 +1196,7 @@ public class BrobIntTester {
 
       System.out.println( "\n      Test 037i: Subtracting t8 take away t6 [(-4444444449856765432) - 164213213] using bytes: " );
       try {
-         System.out.println( "      expecting: -4444444449856765432\n" +
+         System.out.println( "      expecting: 4444444449856765432\n" +
                              "        and got: " + t8.subtract( t6 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
@@ -1210,7 +1210,7 @@ public class BrobIntTester {
 
       System.out.println( "\n      Test 037k: Subtracting t5 take away t15 [00000000 - 20000000666666666654321] using bytes: " );
       try {
-         System.out.println( "      expecting: -20000000666666666654321\n" +
+         System.out.println( "      expecting: 20000000666666666654321\n" +
                              "        and got: " + t5.subtract( t15 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
@@ -1224,7 +1224,7 @@ public class BrobIntTester {
 
       System.out.println( "\n      Test 037m: Subtracting t13 take away t7 [(-84521022654897965219844) - 98423864442223256898441332] using bytes: " );
       try {
-         System.out.println( "      expecting: -98508385464878155027874389\n" +
+         System.out.println( "      expecting: 98508385464878155027874389\n" +
                              "        and got: " + t13.subtract( t7 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
@@ -1238,7 +1238,7 @@ public class BrobIntTester {
 
       System.out.println( "\n      Test 037o: Subtracting t8 take away t15 [(-4444444449856765432) - 20000000666666666654321] using bytes: " );
       try {
-         System.out.println( "      expecting: -20004445111116523419753\n" +
+         System.out.println( "      expecting: 20004445111116523419753\n" +
                              "        and got: " + t8.subtract( t15 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
@@ -1259,7 +1259,7 @@ public class BrobIntTester {
 
       System.out.println( "\n      Test 037r: Subtracting t13 take away t12 [(-84521022654897965219844) - 9987541112220] using bytes: " );
       try {
-         System.out.println( "      expecting: -84521022664885506332064\n" +
+         System.out.println( "      expecting: 84521022664885506332064\n" +
                              "        and got: " + t13.subtract( t12 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
@@ -1273,7 +1273,7 @@ public class BrobIntTester {
 
       System.out.println( "\n      Test 037t: Subtracting t8 take away t12 [(-4444444449856765432) - 9987541112220] using bytes: " );
       try {
-         System.out.println( "      expecting: -4444454437397877652\n" +
+         System.out.println( "      expecting: 4444454437397877652\n" +
                              "        and got: " + t8.subtract( t12 ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " ); }
@@ -1383,10 +1383,10 @@ public class BrobIntTester {
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
-      System.out.println( "\n      Test 048d: Multiplying 542 by t6 [542 * 164213213]: " );
+      System.out.println( "\n      Test 048d: Multiplying 542 by 3 [542 * 3]: " );
       try {
          System.out.println( "      expecting: 200\n" +
-                             "        and got: " + s2.multiply( t6 ) );
+                             "        and got: " + s2.multiply( BrobInt.THREE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
@@ -1523,105 +1523,105 @@ public class BrobIntTester {
       System.out.println( "\n      Test 050a: Dividing t12 by s6 [9987541112220 / 10]: " );
       try {
          System.out.println( "      expecting: 998754111222\n" +
-                             "        and got: " + t12.divide( s6 ) );
+                             "        and got: " + t12.divide( BrobInt.TEN ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050b: Dividing t12 by s5 [9987541112220 / 5]: " );
       try {
          System.out.println( "      expecting: 1997508222444\n" +
-                             "        and got: " + t12.divide( s5 ) );
+                             "        and got: " + t12.divide( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050c: Dividing t12 by s4 [9987541112220 / 2]: " );
       try {
          System.out.println( "      expecting: 4993770556110\n" +
-                             "        and got: " + t12.divide( s4 ) );
+                             "        and got: " + t12.divide( BrobInt.TWO ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050d: Dividing t12 by s3 [9987541112220 / 1]: " );
       try {
          System.out.println( "      expecting: 9987541112220\n" +
-                             "        and got: " + t12.divide( s3 ) );
+                             "        and got: " + t12.divide( BrobInt.ONE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050e: Dividing t10 by s3 [(-248392) / 1]: " );
       try {
          System.out.println( "      expecting: -248392\n" +
-                             "        and got: " + t10.divide( s3 ) );
+                             "        and got: " + t10.divide( BrobInt.ONE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050f: Dividing t10 by s4 [(-248392) / 2]: " );
       try {
          System.out.println( "      expecting: 20\n" +
-                             "        and got: " + t10.divide( s4 ) );
+                             "        and got: " + t10.divide( BrobInt.TWO ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050g: Dividing t18 by s4 [138492832 / 2]: " );
       try {
          System.out.println( "      expecting: exception\n" +
-                             "        and got: " + t18.divide( s4 ) );
+                             "        and got: " + t18.divide( BrobInt.TWO ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050h: Dividing t18 by s3 [138492832 / 1]: " );
       try {
          System.out.println( "      expecting: exception\n" +
-                             "        and got: " + t18.divide( s3 ) );
+                             "        and got: " + t18.divide( BrobInt.ONE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050i: Dividing t13 by s1 [(-84521022654897965219844) / 3]: " );
       try {
          System.out.println( "      expecting: -28173674218299321739948\n" +
-                             "        and got: " + t13.divide( s1 ) );
+                             "        and got: " + t13.divide( BrobInt.THREE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050j: Dividing t13 by s3 [(-84521022654897965219844) / 1]: " );
       try {
          System.out.println( "      expecting: -84521022654897965219844\n" +
-                             "        and got: " + t13.divide( s3 ) );
+                             "        and got: " + t13.divide( BrobInt.ONE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050k: Dividing t8 by s4 [(-4444444449856765432) / 2]: " );
       try {
          System.out.println( "      expecting: -2222222224928382716\n" +
-                             "        and got: " + t8.divide( s4 ) );
+                             "        and got: " + t8.divide( BrobInt.TWO ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050l: Dividing t8 by s3 [(-4444444449856765432) / 1]: " );
       try {
          System.out.println( "      expecting: -4444444449856765432\n" +
-                             "        and got: " + t8.divide( s3 ) );
+                             "        and got: " + t8.divide( BrobInt.ONE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050m: Dividing s2 by s4 [542 / 2]: " );
       try {
          System.out.println( "      expecting: 271\n" +
-                             "        and got: " + s2.divide( s4 ) );
+                             "        and got: " + s2.divide( BrobInt.TWO ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050n: Dividing t4 by s4 [(-22222222222222222222222222222222222222222222222222) / 2]: " );
       try {
          System.out.println( "      expecting: -11111111111111111111111111111111111111111111111111\n" +
-                             "        and got: " + t4.divide( s4 ) );
+                             "        and got: " + t4.divide( BrobInt.TWO ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050o: Dividing t6 by s3 [164213213 / 1]: " );
       try {
          System.out.println( "      expecting: 164213213\n" +
-                             "        and got: " + t6.divide( s3 ) );
+                             "        and got: " + t6.divide( BrobInt.ONE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
@@ -1635,28 +1635,28 @@ public class BrobIntTester {
       System.out.println( "\n      Test 050q: Dividing t5 by s4 [00000000 / 2]: " );
       try {
          System.out.println( "      expecting: 0\n" +
-                             "        and got: " + t5.divide( s4 ) );
+                             "        and got: " + t5.divide( BrobInt.TWO ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050r: Dividing s6 by s5 [10 / 5]: " );
       try {
          System.out.println( "      expecting: 2\n" +
-                             "        and got: " + s6.divide( s5 ) );
+                             "        and got: " + s6.divide( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050s: Dividing s6 by s4 [10 / 2]: " );
       try {
          System.out.println( "      expecting: 5\n" +
-                             "        and got: " + s6.divide( s4 ) );
+                             "        and got: " + s6.divide( BrobInt.TWO ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 050t: Dividing s6 by s6 [10 / 10]: " );
       try {
          System.out.println( "      expecting: 1\n" +
-                             "        and got: " + s6.divide( s6 ) );
+                             "        and got: " + s6.divide( BrobInt.TEN ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
@@ -1679,91 +1679,91 @@ public class BrobIntTester {
       System.out.println( "\n      Test 052a: Modding s6 by s5 [10 % 5]: " );
       try {
          System.out.println( "      expecting: 0\n" +
-                             "        and got: " + s6.remainder( s5 ) );
+                             "        and got: " + s6.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052b: Modding t15 by s5 [20000000666666666654321 % 5]: " );
       try {
          System.out.println( "      expecting: 1\n" +
-                             "        and got: " + t15.remainder( s5 ) );
+                             "        and got: " + t15.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052c: Modding t13 by s5 [(-84521022654897965219844) % 5]: " );
       try {
          System.out.println( "      expecting: 4\n" +
-                             "        and got: " + t13.remainder( s5 ) );
+                             "        and got: " + t13.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052d: Modding s2 by s5 [542 % 5]: " );
       try {
          System.out.println( "      expecting: 2\n" +
-                             "        and got: " + s2.remainder( s5 ) );
+                             "        and got: " + s2.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052e: Modding t12 by s5 [9987541112220 % 5]: " );
       try {
          System.out.println( "      expecting: 0\n" +
-                             "        and got: " + t12.remainder( s5 ) );
+                             "        and got: " + t12.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052f: Modding t10 by s5 [(-248392) % 5]: " );
       try {
          System.out.println( "      expecting: 2\n" +
-                             "        and got: " + t10.remainder( s5 ) );
+                             "        and got: " + t10.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052g: Modding t8 by s5 [(-4444444449856765432) % 5]: " );
       try {
          System.out.println( "      expecting: 2\n" +
-                             "        and got: " + t8.remainder( s5 ) );
+                             "        and got: " + t8.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052h: Modding t7 by s5 [98423864442223256898441332 % 5]: " );
       try {
          System.out.println( "      expecting: 2\n" +
-                             "        and got: " + t7.remainder( s5 ) );
+                             "        and got: " + t7.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052i: Modding t6 by s5 [164213213 % 5]: " );
       try {
          System.out.println( "      expecting: 3\n" +
-                             "        and got: " + t6.remainder( s5 ) );
+                             "        and got: " + t6.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052j: Modding t4 by s5 [(-22222222222222222222222222222222222222222222222222) % 5]: " );
       try {
          System.out.println( "      expecting: 2\n" +
-                             "        and got: " + t4.remainder( s5 ) );
+                             "        and got: " + t4.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052k: Modding t2 by s5 [123456789987654321012345678998765432101023564898765432130231098753218972 % 5]: " );
       try {
          System.out.println( "      expecting: 2\n" +
-                             "        and got: " + t2.remainder( s5 ) );
+                             "        and got: " + t2.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052l: Modding g16 by s5 [56789 % 5]: " );
       try {
          System.out.println( "      expecting: 4\n" +
-                             "        and got: " + g16.remainder( s5 ) );
+                             "        and got: " + g16.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052m: Modding g13 by s5 [234567 % 5]: " );
       try {
          System.out.println( "      expecting: 2\n" +
-                             "        and got: " + g13.remainder( s5 ) );
+                             "        and got: " + g13.remainder( BrobInt.FIVE ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
@@ -1777,7 +1777,7 @@ public class BrobIntTester {
       System.out.println( "\n      Test 052o: Modding t15 by s4 [20000000666666666654321 % 2]: " );
       try {
          System.out.println( "      expecting: 1\n" +
-                             "        and got: " + t15.remainder( s4 ) );
+                             "        and got: " + t15.remainder( BrobInt.TWO ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
@@ -1805,14 +1805,14 @@ public class BrobIntTester {
       System.out.println( "\n      Test 052s: Modding t15 by s6 [20000000666666666654321 % 10]: " );
       try {
          System.out.println( "      expecting: 1\n" +
-                             "        and got: " + t15.remainder( s6 ) );
+                             "        and got: " + t15.remainder( BrobInt.TEN ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
       System.out.println( "\n      Test 052t: Modding g19 by s6 [56789 % 10]: " );
       try {
          System.out.println( "      expecting: 9\n" +
-                             "        and got: " + g19.remainder( s6 ) );
+                             "        and got: " + g19.remainder( BrobInt.TEN ) );
       }
       catch( Exception e ) { System.out.println( "        Exception thrown:  " + e.toString() ); }
 
